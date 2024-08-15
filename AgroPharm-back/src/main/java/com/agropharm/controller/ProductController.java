@@ -1,0 +1,36 @@
+package com.agropharm.controller;
+
+import com.agropharm.domain.Product;
+import com.agropharm.dto.ProductDTO;
+import com.agropharm.mapper.DTOUtils;
+import com.agropharm.service.ProductService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Set;
+
+@RestController
+@CrossOrigin(origins = "http://localhost:4200")
+@RequestMapping(value = "api/products")
+public class ProductController {
+    @Autowired
+    private ProductService productService;
+
+    /*@GetMapping("/all")
+    public Page<Product> getAllProducts(@RequestParam(defaultValue = "0") int page,
+                                        @RequestParam(defaultValue = "10") int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return productService.getAllProducts(pageable);
+    }*/
+
+    @GetMapping("/all")
+    public ResponseEntity<Set<ProductDTO>> getAll() {
+        Set<ProductDTO> productDTOS = (Set<ProductDTO>) new DTOUtils().convertToDtos(productService.getAll(), new ProductDTO());
+        return new ResponseEntity<>(productDTOS, HttpStatus.OK);
+    }
+}
