@@ -1,0 +1,18 @@
+<div>
+    <p>aaaaa </p>
+<table>
+    <tbody>
+        <tr *ngFor="let product of products">
+            <td>
+                <div>
+                    <h3>{{ product.name }}</h3>
+                    <p>Description: {{ product.description }}</p>
+                    <p>Price: {{ product.price }}</p>
+                    <p>Category: {{ product.category?.name }}</p>
+                    <p>Supplies: {{ product.supplies }}</p>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
