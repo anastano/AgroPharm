@@ -19,7 +19,7 @@ export class ProductService {
     //return this.http.get(environment.apiHost + `products/?page=${page}&size=${size}`);
   }*/
 
-  getProducts(page: number, size: number): Observable<any> {
+  /*getProducts(page: number, size: number): Observable<any> {
     return this.http.get(`${this.baseUrl}?page=${page}&size=${size}`);
   }
 
@@ -33,5 +33,12 @@ export class ProductService {
 
   deleteProduct(id: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/${id}`);
-  }
+  }*/
+
+
+  getAllProducts(): Observable<Product[]>{
+    return this.http.get<Product[]>('http://localhost:8099/api/products/all');
+
+    //return this.http.get<Product[]>(environment.apiHost + `products/all`);
+  }  
 }

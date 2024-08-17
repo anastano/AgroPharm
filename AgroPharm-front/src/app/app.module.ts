@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { CommonModule } from '@angular/common';
 import { ProductModule } from './product/product.module';
 import { CommonElementsModule } from './common/common.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,8 @@ import { CommonElementsModule } from './common/common.module';
     CommonModule,
     ProductModule,
     CommonElementsModule,
+    HttpClientModule, /*AAAAA ZAR JE MOGUCE DA JE SAMO OVO FALILO AAAA */
+
     
   ],
   providers: [],

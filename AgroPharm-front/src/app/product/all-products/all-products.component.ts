@@ -20,9 +20,9 @@ export class AllProductsComponent implements OnInit {
   }
 
   loadProducts() {
-    this.productService.getProducts(this.currentPage, this.pageSize).subscribe(data => {
-      this.products = data.content;
-      this.totalPages = data.totalPages;
+    this.productService.getAllProducts().subscribe(
+      (data: Product[]) => {
+      this.products = data;
     });
   }
 
@@ -31,10 +31,6 @@ export class AllProductsComponent implements OnInit {
     this.loadProducts();
   }
 
-  onDeleteProduct(id: number) {
-    this.productService.deleteProduct(id).subscribe(() => {
-      this.loadProducts();
-    });
-  }
+
 
 }

@@ -1,38 +1,18 @@
 <div>
-
-<p>all-products works!</p>
-<div *ngIf="products.length > 0">
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Price</th>
-        <th>Supplies</th>
-        <th>Reserved</th>
-        <th>Category</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
+    <p>aaaaa </p>
+<table>
     <tbody>
-      <tr *ngFor="let product of products">
-        <td>{{ product.name }}</td>
-        <td>{{ product.description }}</td>
-        <td>{{ product.price }}</td>
-        <td>{{ product.supplies }}</td>
-        <td>{{ product.reserved }}</td>
-        <td>{{ product.category?.name }}</td>
-        <td>
-          <button (click)="onDeleteProduct(product.id ?? 0)">Delete</button>
-        </td>
-      </tr>
+        <tr *ngFor="let product of products">
+            <td>
+                <div>
+                    <h3>{{ product.name }}</h3>
+                    <p>Description: {{ product.description }}</p>
+                    <p>Price: {{ product.price }}</p>
+                    <p>Category: {{ product.category?.name }}</p>
+                    <p>Supplies: {{ product.supplies }}</p>
+                </div>
+            </td>
+        </tr>
     </tbody>
-  </table>
-
-  <div>
-    <button (click)="onPageChange(currentPage - 1)" [disabled]="currentPage === 0">Previous</button>
-    <span>{{ currentPage + 1 }} / {{ totalPages }}</span>
-    <button (click)="onPageChange(currentPage + 1)" [disabled]="currentPage + 1 >= totalPages">Next</button>
-  </div>
-</div>
+</table>
 </div>
