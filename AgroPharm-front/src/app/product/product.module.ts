@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AllProductsComponent } from './all-products/all-products.component';
-
+import { MaterialModule } from '../../material/material/material.module';
 
 
 @NgModule({
@@ -10,7 +10,7 @@ import { AllProductsComponent } from './all-products/all-products.component';
   ],
   imports: [
     CommonModule,
-    //dodati MaterialsModule
+    MaterialModule
   ]
 })
 export class ProductModule { }
