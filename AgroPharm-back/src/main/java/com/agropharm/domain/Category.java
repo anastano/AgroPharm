@@ -1,6 +1,6 @@
 package com.agropharm.domain;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "categories")

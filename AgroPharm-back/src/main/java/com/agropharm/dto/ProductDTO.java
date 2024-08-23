@@ -1,8 +1,6 @@
 package com.agropharm.dto;
 
-import com.agropharm.domain.Category;
 import com.agropharm.mapper.DTOEntity;
-import jakarta.persistence.*;
 
 public class ProductDTO implements DTOEntity {
     public Integer id;
