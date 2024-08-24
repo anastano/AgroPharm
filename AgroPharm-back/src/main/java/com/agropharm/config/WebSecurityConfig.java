@@ -86,7 +86,7 @@ public class WebSecurityConfig {
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
         http.exceptionHandling().authenticationEntryPoint(restAuthenticationEntryPoint);
-        http.authorizeRequests().antMatchers("/api/auth/**").permitAll()
+        http.authorizeRequests().antMatchers("/api/**").permitAll()
                 .anyRequest().authenticated().and()
                 .cors().and()
                 .addFilterBefore(new TokenAuthenticationFilter(tokenUtils,  userDetailsService()), BasicAuthenticationFilter.class);
@@ -101,7 +101,8 @@ public class WebSecurityConfig {
     public WebSecurityCustomizer webSecurityCustomizer() {
 
         return (web) -> web.ignoring().antMatchers(HttpMethod.POST, "/api/auth/register")
-                .antMatchers(HttpMethod.POST, "/api/auth/login");
+                .antMatchers(HttpMethod.POST, "/api/auth/login")
+                .antMatchers(HttpMethod.GET, "api/products/all");
 
     }
 }

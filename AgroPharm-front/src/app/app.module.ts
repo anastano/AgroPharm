@@ -11,6 +11,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { MaterialModule } from '../material/material/material.module';
+import { AuthModule } from './auth/auth.module';
+import { AdminModule } from './admin/admin.module';
+import { ClientModule } from './client/client.module';
+import { SellerModule } from './seller/seller.module';
+import { DelivererModule } from './deliverer/deliverer.module';
 
 @NgModule({
   declarations: [
@@ -27,6 +32,12 @@ import { MaterialModule } from '../material/material/material.module';
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
+    AdminModule,
+    ClientModule,
+    SellerModule,
+    DelivererModule,
+    AuthModule,
+    
     
     
   ],

@@ -1,0 +1,7 @@
+.navbar-background {
+  background-color: var(--primary-color);
+}
+
+.nav-link.active {
+  color: white;
+}
