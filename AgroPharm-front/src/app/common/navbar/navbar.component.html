@@ -1,12 +1,43 @@
-<nav>
-    <div>
-        <ul>
-            <li>
-                <a href="/">Home</a>
-            </li>
-            <li>
-                <a href="/all-products">All Products</a>
-            </li>
-        </ul>
+<nav class="navbar navbar-expand-lg navbar-dark bg-success">
+  <div class="container">
+    <a class="navbar-brand mb-0 h1" href="#">AgroFarm</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExample07">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item" *ngIf="!currentUser?.role">
+          <a class="nav-link" href="/login">Prijava</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="/">Početna</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/all-products">Proizvodi</a>
+        </li>
+        
+        <!-- Admin -->
+        <li class="nav-item active" *ngIf="currentUser?.role === 'ADMIN'">
+          <a class="nav-link" href="/admin-profile">Profil admina</a>
+        </li>
+  
+        <!-- Seller -->
+
+        <!-- Deliverer -->
+        
+  
+        <!-- Client -->
+        <li class="nav-item" *ngIf="currentUser?.role === 'CLIENT'">
+          <a class="nav-link" href="/client-profile">Profil klijenta</a>
+        </li>
+      </ul>
+      <!-- Logout -->
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item" *ngIf="currentUser?.role" (click)="onLogout()">
+          <a class="nav-link" href="/">Odjava</a>
+        </li>
+      </ul>
     </div>
+  </div>
 </nav>
