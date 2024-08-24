@@ -4,11 +4,11 @@ INSERT INTO categories (id, name, description) VALUES
 (3, 'Pesticidi', 'Preparati za zaštitu bilja od štetočina'),
 (4, 'Alati', 'Razni poljoprivredni alati i oprema');
 
-INSERT INTO products (id, name, description, price, supplies, reserved, category_id) VALUES
-(1, 'Pšenica Seme', 'Kvalitetno seme pšenice za setvu', 150.00, 1000, 150, 1),
-(2, 'Urea', 'Mineralno đubrivo za useve', 320.00, 500, 50, 2),
-(3, 'Herbicid XY', 'Preparat za suzbijanje korova u kukuruzu', 200.00, 300, 30, 3),
-(4, 'Traktor', 'Traktor za sve poljoprivredne radove', 25000.00, 10, 2, 4);
+INSERT INTO products (id, name, description, price, supplies, reserved, category_id, image_url) VALUES
+(1, 'Pšenica Seme', 'Kvalitetno seme pšenice za setvu', 150.00, 1000, 150, 1, 'https://superweb.rs/storage/slike/202205/lg-bioprodukt-kese-dizajn-ambalaze-graficki-dizajn-superweb-cacak.jpeg'),
+(2, 'Urea', 'Mineralno đubrivo za useve', 320.00, 500, 50, 2, 'https://superweb.rs/storage/slike/202205/lg-bioprodukt-kese-dizajn-ambalaze-graficki-dizajn-superweb-cacak.jpeg'),
+(3, 'Herbicid XY', 'Preparat za suzbijanje korova u kukuruzu', 200.00, 300, 30, 3, 'https://superweb.rs/storage/slike/202205/lg-bioprodukt-kese-dizajn-ambalaze-graficki-dizajn-superweb-cacak.jpeg'),
+(4, 'Traktor', 'Traktor za sve poljoprivredne radove', 25000.00, 10, 2, 4, 'https://superweb.rs/storage/slike/202205/lg-bioprodukt-kese-dizajn-ambalaze-graficki-dizajn-superweb-cacak.jpeg');
 
 INSERT INTO addresses(
     id, street, street_number, city, country, postal_code)

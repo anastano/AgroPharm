@@ -10,6 +10,7 @@ public class ProductDTO implements DTOEntity {
     public double supplies;
     public double reserved;
     public CategoryDTO category;
+    public String imageUrl;
 
     public ProductDTO(){
     }
@@ -68,5 +69,13 @@ public class ProductDTO implements DTOEntity {
 
     public void setCategory(CategoryDTO category) {
         this.category = category;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

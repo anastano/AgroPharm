@@ -8,6 +8,7 @@ export interface Product {
     supplies: number;
     reserved: number;
     category?: Category;
+    imageUrl?: string; 
 }
 
 export interface ProductCreation {
@@ -17,4 +18,5 @@ export interface ProductCreation {
     supplies: number;
     reserved: number;
     categoryId: number;
+    imageUrl?: string; 
 }
