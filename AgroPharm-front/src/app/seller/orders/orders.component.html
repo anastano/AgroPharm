@@ -1,0 +1,42 @@
+<div class="container mt-4">
+    <div class="row" *ngFor="let order of orders">
+      <div class="col-md-12">
+        <div class="card mb-4">
+          <div class="card-header">
+            Narudžbina #{{ order.id }} - {{ order.date | date:'medium' }}
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Klijent: {{ order.user.firstName }} {{ order.user.lastName }}</h5>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Proizvod</th>
+                  <th>Količina</th>
+                  <th>Cena</th>
+                  <th>Ukupna cena proizvoda</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of order.orderItems">
+                  <td>{{ item.product.name }}</td>
+                  <td>{{ item.quantity }}</td>
+                  <td>{{ item.product.price | currency:'RSD ' }}</td>
+                  <td>{{ item.price | currency:'RSD ' }}</td>
+                  <td></td>
+                </tr>
+                <tr>
+                    <th>Ukupna cena narudžbine</th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <th>{{ order.totalPrice | currency: 'RSD '}}</th>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -17,9 +17,10 @@ public class Product {
     private double price;
     @Column(name = "supplies")
     private double supplies;
+    //TODO: dodati jedinicu mere(kg, m, komad...)
     @Column(name = "reserved")
     private double reserved;
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne// (cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "category_id", referencedColumnName = "id")
     private Category category;
 

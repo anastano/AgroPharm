@@ -21,8 +21,14 @@
         <li class="nav-item active" *ngIf="currentUser?.role === 'ADMIN'">
           <a class="nav-link" href="/admin-profile">Profil admina</a>
         </li>
+        <li class="nav-item active" *ngIf="currentUser?.role === 'ADMIN'">
+          <a class="nav-link" href="/all-orders">Narudžbine</a>
+        </li>
   
         <!-- Seller -->
+        <li class="nav-item active" *ngIf="currentUser?.role === 'SELLER'">
+          <a class="nav-link" href="/all-orders">Narudžbine</a>
+        </li>
 
         <!-- Deliverer -->
         
