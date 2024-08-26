@@ -52,11 +52,11 @@ VALUES
      (4, 0, true);
 
 INSERT INTO orders(
-    id, order_date, user_id)
+    id, order_date, client_id, deliverer_id, status)
 VALUES
-    (1, '2024-04-26 18:43:42', 2),
-    (2, '2024-04-27 18:43:42', 2),
-    (3, '2024-04-27 18:43:42', 2);
+    (1, '2024-04-26 18:43:42', 2, null, 1),
+    (2, '2024-04-27 18:43:42', 2, null, 0),
+    (3, '2024-04-27 18:43:42', 2, 3, 4);
 
 INSERT INTO order_items(
     id, quantity, order_id, product_id)

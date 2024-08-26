@@ -1,6 +1,7 @@
 package com.agropharm.dto;
 
 import com.agropharm.domain.OrderItem;
+import com.agropharm.domain.enums.OrderStatus;
 import com.agropharm.mapper.DTOEntity;
 
 import java.sql.Timestamp;
@@ -10,7 +11,9 @@ import java.util.List;
 public class OrderDTO implements DTOEntity {
     public Integer id;
     public Timestamp date;
-    public UserDTO user;
+    public UserDTO client;
+    public UserDTO deliverer;
+    public OrderStatus status;
     public List<OrderItemDTO> orderItems;
     public double totalPrice;
 
@@ -34,12 +37,28 @@ public class OrderDTO implements DTOEntity {
         this.date = date;
     }
 
-    public UserDTO getUser() {
-        return user;
+    public UserDTO getClient() {
+        return client;
     }
 
-    public void setUser(UserDTO user) {
-        this.user = user;
+    public void setClient(UserDTO client) {
+        this.client = client;
+    }
+
+    public UserDTO getDeliverer() {
+        return deliverer;
+    }
+
+    public void setDeliverer(UserDTO deliverer) {
+        this.deliverer = deliverer;
+    }
+
+    public OrderStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(OrderStatus status) {
+        this.status = status;
     }
 
     public List<OrderItemDTO> getOrderItems() {

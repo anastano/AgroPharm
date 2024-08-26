@@ -1,5 +1,7 @@
 package com.agropharm.domain;
 
+import com.agropharm.domain.enums.OrderStatus;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Date;
@@ -17,8 +19,15 @@ public class Order {
     private Timestamp date;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private User user;
+    @JoinColumn(name = "client_id", referencedColumnName = "id", nullable = false)
+    private User client;
+
+    @ManyToOne
+    @JoinColumn(name = "deliverer_id", referencedColumnName = "id")
+    private User deliverer;
+
+    @Column(name = "status")
+    private OrderStatus status;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<OrderItem> orderItems;
@@ -42,12 +51,28 @@ public class Order {
         this.date = date;
     }
 
-    public User getUser() {
-        return user;
+    public User getClient() {
+        return client;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setClient(User client) {
+        this.client = client;
+    }
+
+    public User getDeliverer() {
+        return deliverer;
+    }
+
+    public void setDeliverer(User deliverer) {
+        this.deliverer = deliverer;
+    }
+
+    public OrderStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(OrderStatus status) {
+        this.status = status;
     }
 
     public List<OrderItem> getOrderItems() {
