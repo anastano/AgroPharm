@@ -1,1 +1,67 @@
 <p>client-orders works!</p>
+<div class="container mt-4">
+    <div class="card mb-4">
+      <div class="card-header bg-success text-white" >
+        Filtriraj narudžbine
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-4">
+            <label for="statusFilter" class="form-label">Status:</label>
+            <select id="statusFilter" class="form-control" [(ngModel)]="selectedStatus" (ngModelChange)="applyFilters()">
+              <option value="">Svi statusi</option>
+              <option *ngFor="let status of orderStatuses" [value]="statusTranslations[status]">{{ statusTranslations[status] }}</option>
+            </select>
+          </div>
+          <div class="col-md-4">
+            <label for="productFilter" class="form-label">Proizvod:</label>
+            <input id="productFilter" class="form-control" [(ngModel)]="productFilter" (ngModelChange)="applyFilters()" placeholder="Naziv proizvoda" />
+          </div>          
+        </div>
+      </div>
+    </div>
+  
+    <div class="row" *ngFor="let order of filteredOrders">
+      <div class="col-md-12">
+        <div class="card mb-4">
+          <div class="card-header bg-warning">
+            Narudžbina #{{ order.id }} - {{ order.date | date:'medium' }}
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Klijent: {{ order.client.firstName }} {{ order.client.lastName }}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Status narudžbine: {{ statusTranslations[order.status] }}</h6>
+            <ul class="list-group mb-3">
+              <li class="list-group-item">
+                <strong>Adresa:</strong> {{ order.client.address.street }} {{ order.client.address.streetNumber }}, {{ order.client.address.city }}, {{ order.client.address.country }} - Poštanski broj: {{ order.client.address.postalCode }}
+              </li>
+            </ul>
+            <h6 class="card-title">Proizvodi u narudžbini:</h6>
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Proizvod</th>
+                  <th>Količina</th>
+                  <th>Cena</th>
+                  <th>Ukupna cena proizvoda</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of order.orderItems">
+                  <td>{{ item.product.name }}</td>
+                  <td>{{ item.quantity }}</td>
+                  <td>{{ item.product.price | currency:'RSD ' }}</td>
+                  <td>{{ item.price | currency:'RSD ' }}</td>
+                </tr>
+                <tr>
+                  <th colspan="3">Ukupna cena narudžbine</th>
+                  <th>{{ order.totalPrice | currency: 'RSD '}}</th>
+                </tr>
+              </tbody>
+            </table>
+            <button *ngIf="order.status === 'CREATED'" class="btn btn-primary" (click)="cancelOrder(order.id)">Otkaži narudžbinu</button>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

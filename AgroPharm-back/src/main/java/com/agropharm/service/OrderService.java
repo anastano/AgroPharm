@@ -33,5 +33,7 @@ public class OrderService {
         orderRepository.save(order);
     }
 
-
+    public Set<Order> getAllOrdersByClientId(Integer clientId) {
+        return orderRepository.findAllByClientId(clientId);
+    }
 }

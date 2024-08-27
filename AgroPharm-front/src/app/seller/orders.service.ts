@@ -19,4 +19,12 @@ export class OrdersService {
     return this.http.post(environment.apiHost + `orders/approve/${orderId}`, {});
   }
 
+  cancelOrder(orderId: number): Observable<any> {
+    return this.http.post(environment.apiHost + `orders/cancel/${orderId}`, {});
+  }
+
+  getClientsOrders(): Observable<Order[]>{
+    return this.http.get<Order[]>(environment.apiHost + `orders/by-client`);
+  }
+
 }
