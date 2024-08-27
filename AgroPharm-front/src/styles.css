@@ -4,3 +4,16 @@ html,
 body {
   height: 100%;
 }
+/*.toast-top-center {
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.toast-success {
+  background-color: #28a745;
+}
+
+.toast-error {
+  background-color: #dc3545;
+}*/

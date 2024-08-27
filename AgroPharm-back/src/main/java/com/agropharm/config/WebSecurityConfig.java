@@ -103,7 +103,13 @@ public class WebSecurityConfig {
         return (web) -> web.ignoring().antMatchers(HttpMethod.POST, "/api/auth/register")
                 .antMatchers(HttpMethod.POST, "/api/auth/login")
                 .antMatchers(HttpMethod.GET, "api/products/all")
-                .antMatchers(HttpMethod.GET, "api/orders/all");
+                .antMatchers(HttpMethod.GET, "api/orders/all")
+                .antMatchers(HttpMethod.POST, "api/orders/approve/{orderId}")
+                .antMatchers(HttpMethod.POST, "api/orders/cancel/{orderId}")
+                .antMatchers(HttpMethod.POST, "api/orders/collect-for-delivery/{orderId}")
+                .antMatchers(HttpMethod.POST, "api/orders/completed-success/{orderId}")
+                .antMatchers(HttpMethod.POST, "api/orders/completed-notsuccess/{orderId}");
+
 
     }
 }

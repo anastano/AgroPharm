@@ -15,5 +15,8 @@ export class OrdersService {
     return this.http.get<Order[]>(environment.apiHost + `orders/all`);
   }
 
-  
+  approveOrder(orderId: number): Observable<any> {
+    return this.http.post(environment.apiHost + `orders/approve/${orderId}`, {});
+  }
+
 }

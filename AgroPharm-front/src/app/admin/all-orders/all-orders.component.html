@@ -13,9 +13,13 @@
             </select>
           </div>
           <div class="col-md-4">
-            <label for="productFilter" class="form-label">Proizvod:</label>
-            <input id="productFilter" class="form-control" [(ngModel)]="productFilter" (ngModelChange)="applyFilters()" placeholder="Naziv proizvoda" />
-          </div>          
+            <label for="clientFilter" class="form-label">Klijent:</label>
+            <input id="clientFilter" class="form-control" [(ngModel)]="clientFilter" (ngModelChange)="applyFilters()" placeholder="Ime ili prezime klijenta" />
+          </div>
+          <div class="col-md-4">
+            <label for="delivererFilter" class="form-label">Dostavljač:</label>
+            <input id="delivererFilter" class="form-control" [(ngModel)]="delivererFilter" (ngModelChange)="applyFilters()" placeholder="Ime ili prezime dostavljača" />
+          </div>
         </div>
       </div>
     </div>
@@ -32,6 +36,9 @@
             <ul class="list-group mb-3">
               <li class="list-group-item">
                 <strong>Adresa:</strong> {{ order.client.address.street }} {{ order.client.address.streetNumber }}, {{ order.client.address.city }}, {{ order.client.address.country }} - Poštanski broj: {{ order.client.address.postalCode }}
+              </li>
+              <li class="list-group-item" *ngIf="order.deliverer">
+                <strong>Dostavljač:</strong> {{ order.deliverer.firstName }} {{ order.deliverer.lastName }}
               </li>
             </ul>
             <h6 class="card-title">Proizvodi u narudžbini:</h6>
@@ -57,8 +64,7 @@
                 </tr>
               </tbody>
             </table>
-            <button *ngIf="order.status === 'CREATED'" class="btn btn-primary" (click)="approveOrder(order.id)">Odobri narudžbinu</button>
-        </div>
+          </div>
         </div>
       </div>
     </div>

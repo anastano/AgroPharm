@@ -16,6 +16,8 @@ import { AdminModule } from './admin/admin.module';
 import { ClientModule } from './client/client.module';
 import { SellerModule } from './seller/seller.module';
 import { DelivererModule } from './deliverer/deliverer.module';
+import { ToastrModule } from 'ngx-toastr';
+
 
 @NgModule({
   declarations: [
@@ -37,6 +39,15 @@ import { DelivererModule } from './deliverer/deliverer.module';
     SellerModule,
     DelivererModule,
     AuthModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-top-center',  
+      preventDuplicates: true,
+      timeOut: 3000,  
+      progressBar: true, 
+      progressAnimation: 'increasing',  
+      closeButton: true,  
+      newestOnTop: true,  
+    }),
     
     
     
