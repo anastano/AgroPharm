@@ -36,17 +36,6 @@ export class DelivererOrdersComponent implements OnInit{
     [OrderStatus.REJECTED]: 'Odbijeno'
   };  
 
-  /*applyFilters(): void {
-    this.filteredOrders = this.orders.filter(order => {
-      const matchesStatus = !this.selectedStatus || order.status === this.getStatusKey(this.selectedStatus);
-      const matchesDeliverer = !this.delivererFilter || 
-        (order.deliverer && (order.deliverer.firstName.toLowerCase().includes(this.delivererFilter.toLowerCase()) || 
-        order.deliverer.lastName.toLowerCase().includes(this.delivererFilter.toLowerCase())));
-  
-      return matchesStatus && matchesDeliverer;
-    });
-  }*/
-
   applyFilters(): void {
     this.filteredOrders = this.orders.filter(order => {
       const matchesStatus = !this.selectedStatus || order.status === this.getStatusKey(this.selectedStatus);
