@@ -15,6 +15,7 @@ public class OrderDTO implements DTOEntity {
     public UserDTO deliverer;
     public OrderStatus status;
     public List<OrderItemDTO> orderItems;
+    public AddressDTO address;
     public double totalPrice;
 
     public OrderDTO(){
@@ -78,5 +79,13 @@ public class OrderDTO implements DTOEntity {
 
     public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
+    }
+
+    public AddressDTO getAddress() {
+        return address;
+    }
+
+    public void setAddress(AddressDTO address) {
+        this.address = address;
     }
 }

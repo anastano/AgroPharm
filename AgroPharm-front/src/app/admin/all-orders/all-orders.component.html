@@ -35,7 +35,7 @@
             <h6 class="card-subtitle mb-2 text-muted">Status narudžbine: {{ statusTranslations[order.status] }}</h6>
             <ul class="list-group mb-3">
               <li class="list-group-item">
-                <strong>Adresa:</strong> {{ order.client.address.street }} {{ order.client.address.streetNumber }}, {{ order.client.address.city }}, {{ order.client.address.country }} - Poštanski broj: {{ order.client.address.postalCode }}
+                <strong>Adresa narudžbine:</strong> {{ order.address.street }} {{ order.address.streetNumber }}, {{ order.address.city }}, {{ order.address.country }} - Poštanski broj: {{ order.address.postalCode }}
               </li>
               <li class="list-group-item" *ngIf="order.deliverer">
                 <strong>Dostavljač:</strong> {{ order.deliverer.firstName }} {{ order.deliverer.lastName }}

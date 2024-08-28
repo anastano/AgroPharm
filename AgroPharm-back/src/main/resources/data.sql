@@ -13,7 +13,8 @@ INSERT INTO products (id, name, description, price, supplies, reserved, category
 INSERT INTO addresses(
     id, street, street_number, city, country, postal_code)
 VALUES
-    (1, 'Svetog Save', 23, 'Zvornik', 'BiH', 75400);
+    (1, 'Svetog Save', 23, 'Zvornik', 'BiH', 75400),
+    (2, 'Bulevar despota Stefana', 7, 'Novi Sad', 'Srbija', 21000);
 
 INSERT INTO roles(id, name)
     VALUES (1, 'ADMIN'),
@@ -52,11 +53,11 @@ VALUES
      (4, 0, true);
 
 INSERT INTO orders(
-    id, order_date, client_id, deliverer_id, status)
+    id, order_date, client_id, deliverer_id, status, address_id)
 VALUES
-    (1, '2024-04-26 18:43:42', 4, null, 1),
-    (2, '2024-04-27 18:43:42', 4, null, 0),
-    (3, '2024-04-27 18:43:42', 4, 3, 4);
+    (1, '2024-04-26 18:43:42', 4, null, 1, 1),
+    (2, '2024-04-27 18:43:42', 4, null, 0, 2),
+    (3, '2024-04-27 18:43:42', 4, 3, 4, 1);
 
 INSERT INTO order_items(
     id, quantity, order_id, product_id)

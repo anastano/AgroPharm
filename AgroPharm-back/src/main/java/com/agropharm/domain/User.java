@@ -31,7 +31,7 @@ public class User implements UserDetails {
     private String lastName;
     @Column(name = "phone_number")
     private String phoneNumber;
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
     @ManyToOne(fetch = FetchType.EAGER)

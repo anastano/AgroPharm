@@ -1,4 +1,4 @@
-import { User } from "../../auth/model/auth.model";
+import { Address, User } from "../../auth/model/auth.model";
 import { Product } from "../../product/model/product.model";
 
 export interface OrderItem {
@@ -16,6 +16,7 @@ export interface Order {
     status: OrderStatus;
     orderItems: OrderItem[];
     totalPrice: number;
+    address: Address;
 }
 
 export enum OrderStatus {
