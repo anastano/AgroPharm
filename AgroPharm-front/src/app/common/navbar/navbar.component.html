@@ -21,16 +21,28 @@
         <li class="nav-item active" *ngIf="currentUser?.role === 'ADMIN'">
           <a class="nav-link" href="/admin-profile">Profil admina</a>
         </li>
+        <li class="nav-item active" *ngIf="currentUser?.role === 'ADMIN'">
+          <a class="nav-link" href="/all-orders">Narudžbine</a>
+        </li>
   
         <!-- Seller -->
+        <li class="nav-item active" *ngIf="currentUser?.role === 'SELLER'">
+          <a class="nav-link" href="/seller-orders">Narudžbine</a>
+        </li>
 
         <!-- Deliverer -->
-        
+        <li class="nav-item active" *ngIf="currentUser?.role === 'DELIVERER'">
+          <a class="nav-link" href="/deliverer-orders">Narudžbine</a>
+        </li>
   
         <!-- Client -->
         <li class="nav-item" *ngIf="currentUser?.role === 'CLIENT'">
           <a class="nav-link" href="/client-profile">Profil klijenta</a>
         </li>
+        <li class="nav-item active" *ngIf="currentUser?.role === 'CLIENT'">
+          <a class="nav-link" href="/client-orders">Narudžbine</a>
+        </li>
+
       </ul>
       <!-- Logout -->
       <ul class="navbar-nav ml-auto">

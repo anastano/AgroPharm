@@ -30,21 +30,6 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
 public class WebSecurityConfig {
 
-    //TODO: pogledaj https://spring.io/guides/gs/securing-web
-
-    /*@Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
-                .csrf(AbstractHttpConfigurer::disable)
-                .cors(cors -> cors.disable())
-                .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/products/**").permitAll()
-                        .anyRequest().authenticated()
-                );
-
-        return http.build();
-    }*/
-
     @Bean
     public UserDetailsService userDetailsService() {
         return new CustomUserDetailsService();
@@ -80,13 +65,14 @@ public class WebSecurityConfig {
     @Autowired
     private TokenUtils tokenUtils;
 
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
         http.exceptionHandling().authenticationEntryPoint(restAuthenticationEntryPoint);
-        http.authorizeRequests().antMatchers("/api/**").permitAll()
+        http.authorizeRequests().antMatchers("/api/auth/**").permitAll()
                 .anyRequest().authenticated().and()
                 .cors().and()
                 .addFilterBefore(new TokenAuthenticationFilter(tokenUtils,  userDetailsService()), BasicAuthenticationFilter.class);
@@ -102,7 +88,7 @@ public class WebSecurityConfig {
 
         return (web) -> web.ignoring().antMatchers(HttpMethod.POST, "/api/auth/register")
                 .antMatchers(HttpMethod.POST, "/api/auth/login")
-                .antMatchers(HttpMethod.GET, "api/products/all");
+                .antMatchers(HttpMethod.GET, "/api/products/all");
 
     }
 }

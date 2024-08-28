@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { CommonModule } from '@angular/common';
 import { ProductModule } from './product/product.module';
 import { CommonElementsModule } from './common/common.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
@@ -16,6 +16,9 @@ import { AdminModule } from './admin/admin.module';
 import { ClientModule } from './client/client.module';
 import { SellerModule } from './seller/seller.module';
 import { DelivererModule } from './deliverer/deliverer.module';
+import { ToastrModule } from 'ngx-toastr';
+import { TokenInterceptor } from './auth/interceptor/jwt.interceptor';
+
 
 @NgModule({
   declarations: [
@@ -37,6 +40,15 @@ import { DelivererModule } from './deliverer/deliverer.module';
     SellerModule,
     DelivererModule,
     AuthModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-top-center',  
+      preventDuplicates: true,
+      timeOut: 3000,  
+      progressBar: true, 
+      progressAnimation: 'increasing',  
+      closeButton: true,  
+      newestOnTop: true,  
+    }),
     
     
     
@@ -46,6 +58,11 @@ import { DelivererModule } from './deliverer/deliverer.module';
     ReactiveFormsModule
   ],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    },
     provideAnimationsAsync()
   ],
   bootstrap: [AppComponent]
