@@ -1,0 +1,20 @@
+<div class="container mt-4">
+  <h2>Korpa</h2>
+  <div *ngFor="let item of cart.items" class="row mb-3">
+    <div class="col-md-8">
+        <h5>{{ item.product.name }}</h5>
+        <p>Količina: {{ item.quantity }}</p>
+        <p>Cena: {{ item.product.price | currency: 'RSD' }}</p>
+        <button class="btn btn-danger" (click)="removeFromCart(item.product.id)">Ukloni</button>
+    </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h4>Ukupno: {{ cartTotal | currency: 'RSD' }}</h4>
+            <button class="btn btn-primary" *ngIf="!showAddressForm" (click)="createOrder()">Napravi narudžbinu</button>
+        </div>
+    </div>
+
+  <app-address-form *ngIf="showAddressForm" (addressSubmitted)="onAddressSubmitted($event)"></app-address-form>  
+</div>  
+

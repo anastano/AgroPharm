@@ -11,7 +11,7 @@ import { OrdersComponent } from './seller/orders/orders.component';
 import { AllOrdersComponent } from './admin/all-orders/all-orders.component';
 import { ClientOrdersComponent } from './client/client-orders/client-orders.component';
 import { DelivererOrdersComponent } from './deliverer/deliverer-orders/deliverer-orders.component';
-
+import { CartComponent } from './product/cart/cart.component';
 const routes: Routes = [
   {path: '',  component: HomeComponent},
   {path: 'all-products', component: AllProductsComponent},
@@ -22,6 +22,7 @@ const routes: Routes = [
   {path: 'all-orders', component: AllOrdersComponent},
   {path: 'client-orders', component: ClientOrdersComponent},
   {path: 'deliverer-orders', component: DelivererOrdersComponent},
+  {path: 'cart', component: CartComponent},
   
 
   

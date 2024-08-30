@@ -27,4 +27,8 @@ export class OrdersService {
     return this.http.get<Order[]>(environment.apiHost + `orders/by-client`);
   }
 
+  createOrder(orderRequest: any): Observable<any> {
+    return this.http.post(environment.apiHost + `orders/create`, orderRequest);
+  }
+
 }
