@@ -9,7 +9,7 @@
             <p class="card-text">Cena: {{ product.price | currency:'RSD' }}</p>
             <p class="card-text">Kategorija: {{ product.category?.name }}</p>
             <p class="card-text">Stanje na zalihama: {{ product.supplies }}</p>
-            <a href="all-products" class="btn btn-primary bg-danger mt-auto">Dodaj u korpu</a>
+            <a (click)="addToCart(product)" class="btn btn-primary bg-danger mt-auto">Dodaj u korpu</a>
           </div>
         </div>
       </div>

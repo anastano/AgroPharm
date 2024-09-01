@@ -19,7 +19,7 @@ export interface CurrentUser {
     streetNumber: string;
     city: string;
     country: string;
-    postalCode: Address;
+    postalCode: string;
   }
 
   export interface User {

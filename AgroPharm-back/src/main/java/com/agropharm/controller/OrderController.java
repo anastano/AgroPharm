@@ -4,6 +4,8 @@ import com.agropharm.domain.Order;
 import com.agropharm.domain.User;
 import com.agropharm.domain.enums.OrderStatus;
 import com.agropharm.dto.OrderDTO;
+import com.agropharm.dto.OrderRequestDTO;
+import com.agropharm.dto.UserDTO;
 import com.agropharm.mapper.DTOUtils;
 import com.agropharm.service.OrderService;
 import com.agropharm.service.UserService;
@@ -100,5 +102,24 @@ public class OrderController {
             return ResponseEntity.badRequest().body("{\"message\": \"Bad request\"}");
         }
         return ResponseEntity.ok().body("{\"message\": \"Order delivery completed not successfully\"}");
+    }
+
+    @PostMapping(value = "/create")
+    public ResponseEntity<String> createOrder(@RequestBody OrderRequestDTO orderRequest, Principal user) {
+        try {
+            User client = userService.getByEmail(user.getName());
+            UserDTO userDTO = (UserDTO) new DTOUtils().convertToDto(client, new UserDTO());
+            orderRequest.setClient(userDTO);
+            Order createdOrder = orderService.createOrder(orderRequest);
+            System.out.println("items: \n" + orderRequest.getOrderItems());
+            //System.out.println("address: \n" + orderRequest.getAddress());
+            System.out.println("client: \n" + orderRequest.getClient());
+
+
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body("{\"message\":\"" + e.getMessage() + "\"}");
+        }
+        return ResponseEntity.ok().body("{\"message\": \"You have successfully made an order\"}");
+
     }
 }

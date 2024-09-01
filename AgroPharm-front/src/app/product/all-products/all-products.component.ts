@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../product.service';
 import { Product } from '../model/product.model';
+import { CartService } from '../cart.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-all-products',
@@ -13,7 +15,7 @@ export class AllProductsComponent implements OnInit {
   totalPages = 0;
   pageSize = 10;
 
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService, private cartService: CartService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.loadProducts();
@@ -26,11 +28,15 @@ export class AllProductsComponent implements OnInit {
     });
   }
 
-  onPageChange(page: number) {
+  //add pagination later again
+  /*onPageChange(page: number) {
     this.currentPage = page;
     this.loadProducts();
+  }*/
+
+  addToCart(product: Product) {
+    this.cartService.addToCart(product);
+    this.toastr.success('Proizvod ' + product.name + ' je dodat u korpu', 'Uspeh');
   }
-
-
 
 }
