@@ -5,6 +5,7 @@ import { Address, User } from '../../auth/model/auth.model';
 import { OrdersService } from '../../seller/orders.service';
 import { OrderRequest } from '../../seller/model/order.model';
 import { AuthService } from '../../auth/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-cart',
@@ -18,7 +19,7 @@ export class CartComponent implements OnInit {
   useExistingAddress: boolean = false; 
   userAddress?: Address; 
 
-  constructor(private cartService: CartService, private orderService: OrdersService, private authService: AuthService) {}
+  constructor(private cartService: CartService, private orderService: OrdersService, private authService: AuthService, private toastr: ToastrService) {}
 
   ngOnInit(): void {
     this.cart = this.cartService.getCart();
@@ -39,6 +40,20 @@ export class CartComponent implements OnInit {
       this.calculateTotal();
     } else {
       console.error('Product id is undefined');
+    }
+  }
+
+  increaseQuantity(item: any) {
+    item.quantity++;
+    this.cartService.saveCart();
+    this.calculateTotal();
+  }
+
+  decreaseQuantity(item: any) {
+    if (item.quantity > 1) {
+      item.quantity--;
+      this.cartService.saveCart();
+      this.calculateTotal();
     }
   }
 
@@ -67,12 +82,13 @@ export class CartComponent implements OnInit {
 
       this.orderService.createOrder(orderRequest).subscribe(
         response => {
-          alert('Narudžbina uspešno kreirana sa postojećom adresom!');
+          this.toastr.success('Narudžbina uspešno kreirana!', 'Uspeh');
           this.cartService.clearCart();
+          this.cartTotal = 0;
           this.useExistingAddress = false;
         },
         error => {
-          alert('Došlo je do greške prilikom kreiranja narudžbine.');
+          this.toastr.error('Došlo je do greške prilikom kreiranja narudžbine.', 'Greška');
         }
       );
     }
@@ -90,12 +106,13 @@ export class CartComponent implements OnInit {
 
     this.orderService.createOrder(orderRequest).subscribe(
       response => {
-        alert('Narudžbina uspešno kreirana!');
+        this.toastr.success('Narudžbina uspešno kreirana!', 'Uspeh');
         this.cartService.clearCart();
         this.showAddressForm = false;
+        this.cartTotal = 0;
       },
       error => {
-        alert('Došlo je do greške prilikom kreiranja narudžbine.');
+        this.toastr.error('Došlo je do greške prilikom kreiranja narudžbine.', 'Greška');
       }
     );
   }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../product.service';
 import { Product } from '../model/product.model';
 import { CartService } from '../cart.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-all-products',
@@ -14,7 +15,7 @@ export class AllProductsComponent implements OnInit {
   totalPages = 0;
   pageSize = 10;
 
-  constructor(private productService: ProductService, private cartService: CartService) { }
+  constructor(private productService: ProductService, private cartService: CartService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.loadProducts();
@@ -35,8 +36,7 @@ export class AllProductsComponent implements OnInit {
 
   addToCart(product: Product) {
     this.cartService.addToCart(product);
-    console.log('Proizvod dodat u korpu:', product);
-    window.alert("proizvod dodat u korpu " + product.name);
+    this.toastr.success('Proizvod ' + product.name + ' je dodat u korpu', 'Uspeh');
   }
 
 }

@@ -21,7 +21,7 @@ export class CartService {
     }
   }
 
-  private saveCart() {
+  saveCart() {
     sessionStorage.setItem(this.CART_KEY, JSON.stringify(this.cart));
   }
 
