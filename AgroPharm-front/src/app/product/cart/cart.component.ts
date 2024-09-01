@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Cart } from '../model/cart.model';
 import { CartService } from '../cart.service';
-import { Address } from '../../auth/model/auth.model';
+import { Address, User } from '../../auth/model/auth.model';
 import { OrdersService } from '../../seller/orders.service';
+import { OrderRequest } from '../../seller/model/order.model';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-cart',
@@ -13,12 +15,22 @@ export class CartComponent implements OnInit {
   cart: Cart = new Cart();
   cartTotal: number = 0;
   showAddressForm: boolean = false;
+  useExistingAddress: boolean = false; 
+  userAddress?: Address; 
 
-  constructor(private cartService: CartService, private orderService: OrdersService) {}
+  constructor(private cartService: CartService, private orderService: OrdersService, private authService: AuthService) {}
 
   ngOnInit(): void {
     this.cart = this.cartService.getCart();
     this.calculateTotal();
+    this.fetchUserAddress();
+    console.log(this.cart);
+  }
+
+  fetchUserAddress() {
+    this.authService.getUser().subscribe((user: User) => {
+      this.userAddress = user.address; 
+    });
   }
 
   removeFromCart(productId: number | undefined) {
@@ -35,14 +47,43 @@ export class CartComponent implements OnInit {
   }
 
   createOrder() {
-    this.showAddressForm = true;
+    if (this.userAddress) {
+      this.useExistingAddress = true; 
+    } else {
+      this.showAddressForm = true; 
+    }
+  }
+
+  confirmUseExistingAddress() {
+    if (this.userAddress) {
+      const orderRequest: OrderRequest = {
+        orderItems: this.cart.items.map(item => ({
+          product: item.product,
+          quantity: item.quantity,
+          price: item.product.price * item.quantity
+        })),
+        address: this.userAddress
+      };
+
+      this.orderService.createOrder(orderRequest).subscribe(
+        response => {
+          alert('Narudžbina uspešno kreirana sa postojećom adresom!');
+          this.cartService.clearCart();
+          this.useExistingAddress = false;
+        },
+        error => {
+          alert('Došlo je do greške prilikom kreiranja narudžbine.');
+        }
+      );
+    }
   }
 
   onAddressSubmitted(address: Address) {
-    const orderRequest = {
+    const orderRequest: OrderRequest = {
       orderItems: this.cart.items.map(item => ({
-        productId: item.product.id,
-        quantity: item.quantity
+        product: item.product,
+        quantity: item.quantity,
+        price: item.product.price * item.quantity
       })),
       address: address
     };
@@ -57,5 +98,10 @@ export class CartComponent implements OnInit {
         alert('Došlo je do greške prilikom kreiranja narudžbine.');
       }
     );
+  }
+
+  declineExistingAddress() {
+    this.useExistingAddress = false;
+    this.showAddressForm = true; 
   }
 }

@@ -7,14 +7,20 @@
         <p>Cena: {{ item.product.price | currency: 'RSD' }}</p>
         <button class="btn btn-danger" (click)="removeFromCart(item.product.id)">Ukloni</button>
     </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+        <h4>Ukupno: {{ cartTotal | currency: 'RSD' }}</h4>
+        <button class="btn btn-primary" *ngIf="!showAddressForm && !useExistingAddress" (click)="createOrder()">Napravi narudžbinu</button>
     </div>
-    <div class="row">
-        <div class="col-md-12">
-            <h4>Ukupno: {{ cartTotal | currency: 'RSD' }}</h4>
-            <button class="btn btn-primary" *ngIf="!showAddressForm" (click)="createOrder()">Napravi narudžbinu</button>
-        </div>
-    </div>
+  </div>
+
+  <div *ngIf="useExistingAddress">
+    <h5>Da li želite da koristite svoju postojeću adresu za dostavu?</h5>
+    <p>{{ userAddress?.street }}, {{ userAddress?.streetNumber }}, {{ userAddress?.city }}, {{ userAddress?.country }}, {{ userAddress?.postalCode }}</p>
+    <button class="btn btn-success" (click)="confirmUseExistingAddress()">Koristi ovu adresu</button>
+    <button class="btn btn-secondary" (click)="declineExistingAddress()">Unesi novu adresu</button>
+  </div>
 
   <app-address-form *ngIf="showAddressForm" (addressSubmitted)="onAddressSubmitted($event)"></app-address-form>  
-</div>  
-
+</div>

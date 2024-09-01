@@ -13,8 +13,8 @@ INSERT INTO products (id, name, description, price, supplies, reserved, category
 INSERT INTO addresses(
     id, street, street_number, city, country, postal_code)
 VALUES
-    (1, 'Svetog Save', 23, 'Zvornik', 'BiH', 75400),
-    (2, 'Bulevar despota Stefana', 7, 'Novi Sad', 'Srbija', 21000);
+    (1111, 'Svetog Save', 23, 'Zvornik', 'BiH', 75400),
+    (2222, 'Bulevar despota Stefana', 7, 'Novi Sad', 'Srbija', 21000);
 
 INSERT INTO roles(id, name)
     VALUES (1, 'ADMIN'),
@@ -27,10 +27,10 @@ INSERT INTO roles(id, name)
 INSERT INTO users(
     id, email, password, first_name, last_name, address_id, phone_number, last_password_reset_date, role_id)
 VALUES
-    (1, 'admin@email.com', '123', 'Admin', 'Adamovic', 1, '062123456', '2024-04-26 18:43:42.666', 1),
-    (2, 'seller@email.com', '123', 'Sale', 'Prodanovic', 1, '062123457', '2024-04-26 18:43:42.666', 2),
-    (3, 'deli@email.com', '123', 'Deli', 'Delic', 1, '062123457', '2024-04-26 18:43:42.666', 3),
-    (4, 'client@email.com', '123', 'Pera', 'Peric', 1, '062123457', '2024-04-26 18:43:42.666', 4);
+    (1, 'admin@email.com', '123', 'Admin', 'Adamovic', 1111, '062123456', '2024-04-26 18:43:42.666', 1),
+    (2, 'seller@email.com', '123', 'Sale', 'Prodanovic', 1111, '062123457', '2024-04-26 18:43:42.666', 2),
+    (3, 'deli@email.com', '123', 'Deli', 'Delic', 1111, '062123457', '2024-04-26 18:43:42.666', 3),
+    (4, 'client@email.com', '123', 'Pera', 'Peric', 1111, '062123457', '2024-04-26 18:43:42.666', 4);
 
 INSERT INTO admins(
     user_id, is_senior)
@@ -55,9 +55,9 @@ VALUES
 INSERT INTO orders(
     id, order_date, client_id, deliverer_id, status, address_id)
 VALUES
-    (11, '2024-04-26 18:43:42', 4, null, 1, 1),
-    (12, '2024-04-27 18:43:42', 4, null, 0, 2),
-    (13, '2024-04-27 18:43:42', 4, 3, 4, 1);
+    (11, '2024-04-26 18:43:42', 4, null, 1, 1111),
+    (12, '2024-04-27 18:43:42', 4, null, 0, 2222),
+    (13, '2024-04-27 18:43:42', 4, 3, 4, 1111);
 
 INSERT INTO order_items(
     id, quantity, order_id, product_id)

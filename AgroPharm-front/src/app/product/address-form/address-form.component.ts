@@ -8,7 +8,7 @@ import { Address } from '../../auth/model/auth.model';
 })
 export class AddressFormComponent {
   @Output() addressSubmitted = new EventEmitter<Address>();
-  address: Address = { street: '', streetNumber: '', city: '', country: '', postalCode: 0 };
+  address: Address = { street: '', streetNumber: '', city: '', country: '', postalCode: '' };
 
   submitAddress() {
     this.addressSubmitted.emit(this.address);

@@ -1,9 +1,6 @@
 package com.agropharm.service;
 
-import com.agropharm.domain.Address;
-import com.agropharm.domain.Order;
-import com.agropharm.domain.OrderItem;
-import com.agropharm.domain.Product;
+import com.agropharm.domain.*;
 import com.agropharm.domain.enums.OrderStatus;
 import com.agropharm.dto.OrderItemDTO;
 import com.agropharm.dto.OrderRequestDTO;
@@ -55,16 +52,21 @@ public class OrderService {
         Order order = new Order();
         order.setDate(new Timestamp(System.currentTimeMillis()));
         order.setStatus(OrderStatus.CREATED);
-        order.setClient(userRepository.findByEmail(orderRequest.getClient().getEmail()));
+        User client = userRepository.findByEmail(orderRequest.getClient().getEmail());
+        order.setClient(client);
 
-        //Address address = addressRepository.getById(1);
-        Address address = addressRepository.getById(orderRequest.getAddress().getId());
-
-        if (address.getId() == null) {
-            address = addressRepository.save(address);
+        Address address;
+        if (orderRequest.getAddress() != null) {
+            Address newAddress = new Address();
+            newAddress.setStreet(orderRequest.getAddress().getStreet());
+            newAddress.setStreetNumber(orderRequest.getAddress().getStreetNumber());
+            newAddress.setCity(orderRequest.getAddress().getCity());
+            newAddress.setCountry(orderRequest.getAddress().getCountry());
+            newAddress.setPostalCode(orderRequest.getAddress().getPostalCode());
+            address = addressRepository.save(newAddress);
         } else {
-            address = addressRepository.findById(address.getId())
-                    .orElseThrow(() -> new RuntimeException("Address not found"));
+            address = addressRepository.findById(client.getAddress().getId())
+                    .orElseThrow(() -> new RuntimeException("Default address not found"));
         }
         order.setAddress(address);
 

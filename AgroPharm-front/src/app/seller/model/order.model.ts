@@ -29,3 +29,13 @@ export enum OrderStatus {
     REJECTED = 'REJECTED'
 }
 
+export interface OrderItemRequest {
+    product: Product;
+    quantity: number;
+    price: number;
+  }
+  
+  export interface OrderRequest {
+    orderItems: OrderItemRequest[];
+    address?: Address;
+  }

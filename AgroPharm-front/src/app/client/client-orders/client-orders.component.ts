@@ -45,7 +45,7 @@ export class ClientOrdersComponent implements OnInit{
   }
 
   cancelOrder(orderId: number): void {
-    this.orderService.approveOrder(orderId).subscribe(
+    this.orderService.cancelOrder(orderId).subscribe(
       response => {
         console.log('Order cancelled', response);
         this.toastr.success('Narudžbina je uspešno otkazana!', 'Uspeh');

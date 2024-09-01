@@ -111,6 +111,11 @@ public class OrderController {
             UserDTO userDTO = (UserDTO) new DTOUtils().convertToDto(client, new UserDTO());
             orderRequest.setClient(userDTO);
             Order createdOrder = orderService.createOrder(orderRequest);
+            System.out.println("items: \n" + orderRequest.getOrderItems());
+            //System.out.println("address: \n" + orderRequest.getAddress());
+            System.out.println("client: \n" + orderRequest.getClient());
+
+
         }catch (Exception e){
             return ResponseEntity.badRequest().body("{\"message\":\"" + e.getMessage() + "\"}");
         }
