@@ -1,61 +1,65 @@
 <div class="home-page">
-    <div class="header-image">
-      <div class="overlay">
-        <h1 class="text-center">Dobrodošli u AgroPharm poljoprivrednu apoteku</h1>
-      </div>
+  <div class="header-image">
+    <div class="overlay">
+      <h1 class="text-center">Dobrodošli u AgroPharm poljoprivrednu apoteku</h1>
     </div>
-  
-    <div class="container mt-4">
-      <div class="row mb-3">
-        <div class="col-md-6">
-          <input
-            type="text"
-            class="form-control"
-            placeholder="Pretraži proizvode po imenu"
-            [(ngModel)]="searchTerm"
-            (input)="filterProducts()"
-          />
-        </div>
-        <div class="col-md-6">
-          <select
-            class="form-control"
-            [(ngModel)]="selectedCategory"
-            (change)="filterProducts()"
-          >
-            <option value="">Sve kategorije</option>
-            <option *ngFor="let category of categories" [value]="category.name">
-              {{ category.name }}
-            </option>
-          </select>
-        </div>
+  </div>
+
+  <div class="container mt-4">
+    <div class="card filter-container shadow-sm p-4">
+      <div class="card-header bg-success text-white">
+        Pretraži proizvode
       </div>
-    </div>
-  
-    <div class="container mt-4">
-      <div class="row">
-        <div class="col-md-4" *ngFor="let product of filteredProducts">
-          <div class="card h-100 mb-4 shadow-sm">
-            <img
-              src="{{ product.imageUrl }}"
-              class="card-img-top"
-              alt="{{ product.name }}"
-              style="max-height: 200px; object-fit: cover"
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <input
+              type="text"
+              class="form-control form-control-lg"
+              placeholder="Pretraži proizvode po imenu"
+              [(ngModel)]="searchTerm"
+              (input)="filterProducts()"
             />
-            <div class="card-body d-flex flex-column">
-              <h5 class="card-title">{{ product.name }}</h5>
-              <p class="card-text">Opis: {{ product.description }}</p>
-              <p class="card-text">
-                Cena: {{ product.price | currency: 'RSD ' }}
-              </p>
-              <p class="card-text">Kategorija: {{ product.category?.name }}</p>
-              <p class="card-text" *ngIf="currentUser?.role === 'ADMIN'|| currentUser?.role ==='SELLER'">
-                Stanje na zalihama: {{ product.supplies }} 
-              </p>
-              <a (click)="addToCart(product)" class="btn btn-primary bg-danger mt-auto" *ngIf="currentUser?.role === 'CLIENT'">Dodaj u korpu</a>
-            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <select
+              class="form-control form-control-lg"
+              [(ngModel)]="selectedCategory"
+              (change)="filterProducts()"
+            >
+              <option value="">Sve kategorije</option>
+              <option *ngFor="let category of categories" [value]="category.name">
+                {{ category.name }}
+              </option>
+            </select>
           </div>
         </div>
       </div>
     </div>
   </div>
-  
+
+  <div class="container mt-4">
+    <div class="row">
+      <div class="col-md-4 mb-4" *ngFor="let product of filteredProducts">
+        <div class="card h-100 mb-4 shadow-sm">
+          <img
+            src="{{ product.imageUrl }}"
+            class="card-img-top"
+            alt="{{ product.name }}"
+            style="max-height: 200px; object-fit: cover"
+          />
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">{{ product.name }}</h5>
+            <p class="card-text">Opis: {{ product.description }}</p>
+            <p class="card-text">Cena: {{ product.price | currency: 'RSD ' }}</p>
+            <p class="card-text">Kategorija: {{ product.category?.name }}</p>
+            <p class="card-text" *ngIf="currentUser?.role === 'ADMIN' || currentUser?.role === 'SELLER'">
+              Stanje na zalihama: {{ product.supplies }}
+            </p>
+            <a (click)="addToCart(product)" class="btn btn-primary bg-danger mt-auto" *ngIf="currentUser?.role === 'CLIENT'">Dodaj u korpu</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
