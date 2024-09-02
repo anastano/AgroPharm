@@ -3,6 +3,8 @@ import { ProductService } from '../product.service';
 import { Product } from '../model/product.model';
 import { CartService } from '../cart.service';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from '../../auth/auth.service';
+import { CurrentUser } from '../../auth/model/auth.model';
 
 @Component({
   selector: 'app-all-products',
@@ -14,11 +16,19 @@ export class AllProductsComponent implements OnInit {
   currentPage = 0;
   totalPages = 0;
   pageSize = 10;
+  public currentUser: CurrentUser | undefined;
 
-  constructor(private productService: ProductService, private cartService: CartService, private toastr: ToastrService) { }
+
+  constructor(private productService: ProductService, private cartService: CartService, private toastr: ToastrService, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.loadProducts();
+    this.authService.currentUser$.subscribe((user) => {
+      if (user) {
+        console.log("User(navbar): ", user.email, " Role: ", user.role);
+        this.currentUser = user;
+      }
+    });
   }
 
   loadProducts() {

@@ -4,6 +4,8 @@ import { Category } from '../../product/model/category.model';
 import { ProductService } from '../../product/product.service';
 import { CartService } from '../../product/cart.service';
 import { ToastrService } from 'ngx-toastr';
+import { CurrentUser } from '../../auth/model/auth.model';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -16,14 +18,20 @@ export class HomeComponent implements OnInit{
   categories: Category[] = [];
   searchTerm: string = '';
   selectedCategory: string = '';
+  public currentUser: CurrentUser | undefined;
 
-  constructor(
-    private productService: ProductService, private cartService: CartService, private toastr: ToastrService
-  ) {}
+
+  constructor( private productService: ProductService, private cartService: CartService, private toastr: ToastrService, private authService: AuthService ) {}
 
   ngOnInit(): void {
     this.loadProducts();
     this.loadCategories();
+    this.authService.currentUser$.subscribe((user) => {
+      if (user) {
+        console.log("User(navbar): ", user.email, " Role: ", user.role);
+        this.currentUser = user;
+      }
+    });
   }
 
   loadProducts(): void {
