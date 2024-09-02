@@ -19,8 +19,24 @@ export class OrdersService {
     return this.http.post(environment.apiHost + `orders/approve/${orderId}`, {});
   }
 
+  rejectOrder(orderId: number): Observable<any> {
+    return this.http.post(environment.apiHost + `orders/reject/${orderId}`, {});
+  }
+
   cancelOrder(orderId: number): Observable<any> {
     return this.http.post(environment.apiHost + `orders/cancel/${orderId}`, {});
+  }
+
+  colectOrderForDelivery(orderId: number): Observable<any> {
+    return this.http.post(environment.apiHost + `orders/collect-for-delivery/${orderId}`, {});
+  }
+
+  markOrderCompletedSuccessfully(orderId: number): Observable<any> {
+    return this.http.post(environment.apiHost + `orders/completed-success/${orderId}`, {});
+  }
+
+  markOrderCompletedUnsuccessfully(orderId: number): Observable<any> {
+    return this.http.post(environment.apiHost + `orders/completed-notsuccess/${orderId}`, {});
   }
 
   getClientsOrders(): Observable<Order[]>{

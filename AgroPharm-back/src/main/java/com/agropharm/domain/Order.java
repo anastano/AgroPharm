@@ -19,7 +19,7 @@ public class Order {
     private Timestamp date;
 
     @ManyToOne
-    @JoinColumn(name = "client_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "client_id", referencedColumnName = "id", nullable = true)
     private User client;
 
     @ManyToOne

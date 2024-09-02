@@ -69,4 +69,10 @@ export class AuthService {
   getUser(): Observable<User> {
     return this.http.get<User>(environment.apiHost + `users/current-user`);
   }  
+
+  isAuthenticated(): boolean {
+    const token = this.tokenStorage.getAccessToken();
+    return !!token;
+  }
+  
 }

@@ -48,12 +48,23 @@ export class OrdersComponent implements OnInit {
   approveOrder(orderId: number): void {
     this.orderService.approveOrder(orderId).subscribe(
       response => {
-        console.log('Order approved', response);
         this.toastr.success('Narudžbina je uspešno odobrena!', 'Uspeh');
         this.loadOrders();
       },
       error => {
         this.toastr.error('Došlo je do greške prilikom odobravanja narudžbine.', 'Greška');
+      }
+    );
+  }
+
+  rejectOrder(orderId: number): void {
+    this.orderService.rejectOrder(orderId).subscribe(
+      response => {
+        this.toastr.success('Narudžbina je uspešno odbijena!', 'Uspeh');
+        this.loadOrders();
+      },
+      error => {
+        this.toastr.error('Došlo je do greške prilikom odbijanja narudžbine.', 'Greška');
       }
     );
   }

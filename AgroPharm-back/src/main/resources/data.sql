@@ -1,14 +1,20 @@
 INSERT INTO categories (id, name, description) VALUES
-(1, 'Seme', 'Razne vrste semena za poljoprivredne kulture'),
+(1, 'Semena', 'Razne vrste semena za poljoprivredne kulture'),
 (2, 'Đubriva', 'Mineralna i organska đubriva za različite kulture'),
-(3, 'Pesticidi', 'Preparati za zaštitu bilja od štetočina'),
-(4, 'Alati', 'Razni poljoprivredni alati i oprema');
+(3, 'Zaštita bilja', 'Preparati za zaštitu bilja od štetočina'),
+(4, 'Alati i oprema', 'Razni poljoprivredni alati i oprema');
 
 INSERT INTO products (id, name, description, price, supplies, reserved, category_id, image_url) VALUES
-(1, 'Pšenica Seme', 'Kvalitetno seme pšenice za setvu', 150.00, 1000, 150, 1, 'https://superweb.rs/storage/slike/202205/lg-bioprodukt-kese-dizajn-ambalaze-graficki-dizajn-superweb-cacak.jpeg'),
-(2, 'Urea', 'Mineralno đubrivo za useve', 320.00, 500, 50, 2, 'https://superweb.rs/storage/slike/202205/lg-bioprodukt-kese-dizajn-ambalaze-graficki-dizajn-superweb-cacak.jpeg'),
-(3, 'Herbicid XY', 'Preparat za suzbijanje korova u kukuruzu', 200.00, 300, 30, 3, 'https://superweb.rs/storage/slike/202205/lg-bioprodukt-kese-dizajn-ambalaze-graficki-dizajn-superweb-cacak.jpeg'),
-(4, 'Traktor', 'Traktor za sve poljoprivredne radove', 25000.00, 10, 2, 4, 'https://superweb.rs/storage/slike/202205/lg-bioprodukt-kese-dizajn-ambalaze-graficki-dizajn-superweb-cacak.jpeg');
+(1, 'Pšenica seme', 'Kvalitetno seme pšenice za setvu', 150.00, 1000, 150, 1, 'https://agroportal.rs/wp-content/uploads/2023/07/psenica-zrno-krupno-01.jpg'),
+(2, 'Kadifa cveće', 'Kvalitetno seme cveća', 50.00, 1000, 150, 1, 'https://c.cdnmp.net/966870925/p/l/1/floris-cvece-kadifa-visoka-0-5g~5801.jpg'),
+(3, 'Lepa kata seme', 'Kvalitetno seme cveća', 50.00, 1000, 150, 1, 'https://i0.wp.com/agroapoteka.com/wp-content/uploads/2021/02/Lepa-Kata-Aster-Piuma.jpg?fit=800%2C800&ssl=1'),
+(4, 'Slamno cveće', 'Kvalitetno seme cveća', 50.00, 1000, 150, 1, 'https://i0.wp.com/agroapoteka.com/wp-content/uploads/2021/02/%D0%BF%D1%80%D0%B5%D1%83%D0%B7%D0%B8%D0%BC%D0%B0%D1%9A%D0%B5-3.jpg?w=225&ssl=1'),
+(5, 'Cveće ladolež seme', 'Kvalitetno seme cveća', 50.00, 1000, 150, 1, 'https://i0.wp.com/agroapoteka.com/wp-content/uploads/2021/02/Ladolez.jpg?fit=800%2C800&ssl=1'),
+(6, 'Petunija cveće seme', 'Kvalitetno seme cveća', 50.00, 1000, 150, 1, 'https://vrtnarstvo-mrak.si/wp-content/uploads/2018/09/Petunija-705x470.jpg'),
+(7, 'Urea', 'Mineralno đubrivo za useve, 5kg', 320.00, 500, 50, 2, 'https://urbangarden.rs/wp-content/uploads/2023/06/urea.jpg'),
+(8, 'Herbicid', 'Preparat za suzbijanje korova u kukuruzu', 750.00, 300, 30, 3, 'https://www.behardoo.ba/hoaloocy/2022/11/Glifomark_1l.jpg'),
+(9, 'Nika-fert 20:20:20', 'Đubrivo sa mikroelementima – B,Cu,Fe,Mn,Zn,Mo, 2kg', 320.00, 500, 50, 2, 'https://agrounik.rs/wp-content/uploads/2020/06/20-20-20.jpg'),
+(10, 'Kukuruz seme', 'Kvalitetno seme kukuruza, 25000 semena', 3800.00, 500, 50, 1, 'https://www.kws.com/rs/media/kws-kashmir-2-crop.jpg');
 
 INSERT INTO addresses(
     id, street, street_number, city, country, postal_code)
@@ -55,9 +61,9 @@ VALUES
 INSERT INTO orders(
     id, order_date, client_id, deliverer_id, status, address_id)
 VALUES
-    (11, '2024-04-26 18:43:42', 4, null, 1, 1111),
+    (11, '2024-04-26 18:43:42', 4, null, 0, 1111),
     (12, '2024-04-27 18:43:42', 4, null, 0, 2222),
-    (13, '2024-04-27 18:43:42', 4, 3, 4, 1111);
+    (13, '2024-04-27 18:43:42', 4, 3, 1, 1111);
 
 INSERT INTO order_items(
     id, quantity, order_id, product_id)

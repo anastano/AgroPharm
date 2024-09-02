@@ -43,6 +43,16 @@ public class OrderService {
         orderRepository.save(order);
     }
 
+    public void assignDeliverer(Integer orderId, User deliverer) throws Exception {
+        Optional<Order> orderDB = orderRepository.findById(orderId);
+        if (!orderDB.isPresent()) {
+            throw new Exception("Order not found");
+        }
+        Order order = orderDB.get();
+        order.setDeliverer(deliverer);
+        orderRepository.save(order);
+    }
+
     public Set<Order> getAllOrdersByClientId(Integer clientId) {
         return orderRepository.findAllByClientId(clientId);
     }

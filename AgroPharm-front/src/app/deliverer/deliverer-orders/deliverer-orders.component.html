@@ -73,6 +73,9 @@
                 </tr>
               </tbody>
             </table>
+            <button *ngIf="order.status === 'APPROVED'" class="btn btn-primary" (click)="markOrderCollectedForDelivery(order.id)">Označi da je narudžbina preuzeta za dostavu</button>
+            <button *ngIf="order.status === 'COLLECTED_FOR_DELIVERY'" class="btn btn-success" (click)="markOrderAsSuccesfullyDelivered(order.id)">Označi da je narudžbina uspešno dostavljena</button>
+            <button *ngIf="order.status === 'COLLECTED_FOR_DELIVERY'" class="btn btn-danger" (click)="markOrderAsUnuccesfullyDelivered(order.id)">Označi da narudžbina nije uspešno dostavljena</button>
           </div>
         </div>
       </div>

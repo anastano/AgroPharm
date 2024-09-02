@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Order, OrderStatus } from '../../seller/model/order.model';
 import { OrdersService } from '../../seller/orders.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-deliverer-orders',
@@ -17,9 +18,13 @@ export class DelivererOrdersComponent implements OnInit{
 
   orderStatuses = Object.values(OrderStatus);
 
-  constructor(private orderService: OrdersService) { }
+  constructor(private orderService: OrdersService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
+    this.loadOrders();
+  }
+
+  loadOrders(): void{
     this.orderService.getAllOrders().subscribe(data => {
       this.orders = data;
       this.applyFilters();
@@ -68,4 +73,39 @@ export class DelivererOrdersComponent implements OnInit{
     });
   }
   
+  markOrderCollectedForDelivery(orderId: number): void {
+    this.orderService.colectOrderForDelivery(orderId).subscribe(
+      response => {
+        this.toastr.success('Narudžbina je označena kao preuzeta!', 'Uspeh');
+        this.loadOrders();
+      },
+      error => {
+        this.toastr.error('Došlo je do greške prilikom promene statusa narudžbine.', 'Greška');
+      }
+    );
+  }
+
+  markOrderAsSuccesfullyDelivered(orderId: number): void {
+    this.orderService.markOrderCompletedSuccessfully(orderId).subscribe(
+      response => {
+        this.toastr.success('Narudžbina je označena kao uspešna!', 'Uspeh');
+        this.loadOrders();
+      },
+      error => {
+        this.toastr.error('Došlo je do greške prilikom promene statusa narudžbine.', 'Greška');
+      }
+    );
+  }
+
+  markOrderAsUnuccesfullyDelivered(orderId: number): void {
+    this.orderService.markOrderCompletedUnsuccessfully(orderId).subscribe(
+      response => {
+        this.toastr.success('Narudžbina je označena kao neuspešna!', 'Uspeh');
+        this.loadOrders();
+      },
+      error => {
+        this.toastr.error('Došlo je do greške prilikom promene statusa narudžbine.', 'Greška');
+      }
+    );
+  }
 }
