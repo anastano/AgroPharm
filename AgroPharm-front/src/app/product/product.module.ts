@@ -7,12 +7,14 @@ import { ToastrModule } from 'ngx-toastr';
 import { CartComponent } from './cart/cart.component';
 import { AddressFormComponent } from './address-form/address-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UnauthenticatedOrderComponent } from './unauthenticated-order/unauthenticated-order.component';
 
 @NgModule({
   declarations: [
     AllProductsComponent,
     CartComponent,
-    AddressFormComponent
+    AddressFormComponent,
+    UnauthenticatedOrderComponent
   ],
   imports: [
     CommonModule,

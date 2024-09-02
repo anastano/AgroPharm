@@ -18,13 +18,18 @@ export class CartComponent implements OnInit {
   showAddressForm: boolean = false;
   useExistingAddress: boolean = false; 
   userAddress?: Address; 
+  isAuthenticated: boolean = false;
 
   constructor(private cartService: CartService, private orderService: OrdersService, private authService: AuthService, private toastr: ToastrService) {}
 
   ngOnInit(): void {
     this.cart = this.cartService.getCart();
     this.calculateTotal();
-    this.fetchUserAddress();
+    this.isAuthenticated = this.authService.isAuthenticated(); 
+    
+    if (this.isAuthenticated) {
+      this.fetchUserAddress();
+    }
     console.log(this.cart);
   }
 
@@ -62,10 +67,14 @@ export class CartComponent implements OnInit {
   }
 
   createOrder() {
-    if (this.userAddress) {
-      this.useExistingAddress = true; 
+    if (this.isAuthenticated) {
+      if (this.userAddress) {
+        this.useExistingAddress = true;
+      } else {
+        this.showAddressForm = true;
+      }
     } else {
-      this.showAddressForm = true; 
+      window.location.href = '/unauthenticated-order';
     }
   }
 

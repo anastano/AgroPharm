@@ -104,7 +104,7 @@ public class OrderController {
         return ResponseEntity.ok().body("{\"message\": \"Order delivery completed not successfully\"}");
     }
 
-    @PostMapping(value = "/create")
+    /*@PostMapping(value = "/create")
     public ResponseEntity<String> createOrder(@RequestBody OrderRequestDTO orderRequest, Principal user) {
         try {
             User client = userService.getByEmail(user.getName());
@@ -121,5 +121,22 @@ public class OrderController {
         }
         return ResponseEntity.ok().body("{\"message\": \"You have successfully made an order\"}");
 
+    }*/
+    @PostMapping(value = "/create")
+    public ResponseEntity<String> createOrder(@RequestBody OrderRequestDTO orderRequest, Principal user) {
+        try {
+            if (user != null) {
+                User client = userService.getByEmail(user.getName());
+                UserDTO userDTO = (UserDTO) new DTOUtils().convertToDto(client, new UserDTO());
+                orderRequest.setClient(userDTO);
+            } else {
+                orderRequest.setClient(null);
+            }
+            Order createdOrder = orderService.createOrder(orderRequest);
+            return ResponseEntity.ok().body("{\"message\": \"You have successfully made an order\"}");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("{\"message\":\"" + e.getMessage() + "\"}");
+        }
     }
+
 }

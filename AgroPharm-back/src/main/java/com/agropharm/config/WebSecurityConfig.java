@@ -89,6 +89,7 @@ public class WebSecurityConfig {
         return (web) -> web.ignoring().antMatchers(HttpMethod.POST, "/api/auth/register")
                 .antMatchers(HttpMethod.POST, "/api/auth/login")
                 .antMatchers(HttpMethod.GET, "/api/products/all")
+                .antMatchers(HttpMethod.POST, "/api/orders/create")
                 .antMatchers(HttpMethod.GET, "/api/products/categories");
 
     }
