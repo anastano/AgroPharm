@@ -3,6 +3,7 @@ import { CurrentUser } from '../../auth/model/auth.model';
 import { AuthService } from '../../auth/auth.service';
 import { ACCESS_TOKEN } from '../../auth/constants';
 import { Router } from '@angular/router';
+import { CartService } from '../../product/cart.service';
 
 @Component({
   selector: 'app-navbar',
@@ -13,7 +14,7 @@ export class NavbarComponent implements OnInit{
   public currentUser: CurrentUser | undefined;
   isMenuCollapsed = true;
 
-  constructor(private authService: AuthService, private router: Router){}
+  constructor(private authService: AuthService, private router: Router, private cartService: CartService){}
 
   async ngOnInit(): Promise<void> {
     if (window.localStorage.getItem(ACCESS_TOKEN)) {
@@ -29,6 +30,7 @@ export class NavbarComponent implements OnInit{
   }
 
   onLogout(): void {
+    this.cartService.clearCart();
     this.authService.logout();
   }
 
