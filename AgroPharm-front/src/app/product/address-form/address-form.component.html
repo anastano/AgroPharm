@@ -1,0 +1,24 @@
+<form #addressForm="ngForm" (ngSubmit)="submitAddress()">
+    <div class="form-group">
+      <label for="street">Ulica</label>
+      <input type="text" id="street" name="street" [(ngModel)]="address.street" required class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="streetNumber">Broj</label>
+      <input type="text" id="streetNumber" name="streetNumber" [(ngModel)]="address.streetNumber" required class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="city">Grad</label>
+      <input type="text" id="city" name="city" [(ngModel)]="address.city" required class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="country">Država</label>
+      <input type="text" id="country" name="country" [(ngModel)]="address.country" required class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="postalCode">Poštanski broj</label>
+      <input type="text" id="postalCode" name="postalCode" [(ngModel)]="address.postalCode" required class="form-control">
+    </div>
+    <button type="submit" class="btn btn-primary">Potvrdi adresu</button>
+  </form>
+  

@@ -1,0 +1,55 @@
+<div class="container mt-4">
+  <h2>Korpa</h2>
+
+  <div *ngIf="cart.items.length === 0" class="alert alert-warning" role="alert">
+    Vaša korpa je prazna.
+  </div>
+
+  <div *ngIf="cart.items.length > 0" class="row">
+    <div class="col-md-8">
+      <ul class="list-group mb-3">
+        <li *ngFor="let item of cart.items" class="list-group-item d-flex justify-content-between align-items-center">
+          <div class="ms-2 me-auto d-flex align-items-center">
+            <img [src]="item.product.imageUrl" alt="{{ item.product.name }}" class="img-thumbnail me-3" style="width: 100px; height: 100px; object-fit: cover;">
+            
+            <div>
+              <h5>{{ item.product.name }}</h5>
+              <p class="mb-1">{{ item.product.description }}</p>
+              <p class="mb-1">Cena: {{ item.product.price | currency: 'RSD' }}</p>
+            </div>
+          </div>
+
+          <div class="d-flex align-items-center">
+            <button class="btn btn-outline-secondary btn-lg me-2" (click)="decreaseQuantity(item)">-</button>
+            <span>{{ item.quantity }}</span>
+            <button class="btn btn-outline-secondary btn-lg ms-2" (click)="increaseQuantity(item)">+</button>
+          </div>
+
+          <button class="btn btn-outline-danger btn-sm ms-3" (click)="removeFromCart(item.product.id)">Ukloni</button>
+        </li>
+      </ul>
+
+      <div class="text-end">
+        <h4 class="display-6 fw-bold">Ukupno: {{ cartTotal | currency: 'RSD' }}</h4>
+        <button class="btn btn-primary mt-2" 
+                *ngIf="!showAddressForm && !useExistingAddress && cart.items.length > 0" 
+                (click)="createOrder()">Napravi narudžbinu</button>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div *ngIf="useExistingAddress || showAddressForm" class="card p-3 shadow-sm">
+        <ng-container *ngIf="useExistingAddress">
+          <h5>Koristite postojeću adresu za dostavu?</h5>
+          <p>{{ userAddress?.street }}, {{ userAddress?.streetNumber }}, {{ userAddress?.city }}, {{ userAddress?.country }}, {{ userAddress?.postalCode }}</p>
+          <button class="btn btn-success mb-2 w-100" (click)="confirmUseExistingAddress()">Koristi ovu adresu</button>
+          <button class="btn btn-secondary w-100" (click)="declineExistingAddress()">Unesi novu adresu</button>
+        </ng-container>
+
+        <ng-container *ngIf="showAddressForm">
+          <app-address-form (addressSubmitted)="onAddressSubmitted($event)"></app-address-form>  
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>
