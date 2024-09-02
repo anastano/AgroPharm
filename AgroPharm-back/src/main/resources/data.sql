@@ -55,9 +55,9 @@ VALUES
 INSERT INTO orders(
     id, order_date, client_id, deliverer_id, status, address_id)
 VALUES
-    (11, '2024-04-26 18:43:42', 4, null, 1, 1111),
+    (11, '2024-04-26 18:43:42', 4, null, 0, 1111),
     (12, '2024-04-27 18:43:42', 4, null, 0, 2222),
-    (13, '2024-04-27 18:43:42', 4, 3, 4, 1111);
+    (13, '2024-04-27 18:43:42', 4, 3, 1, 1111);
 
 INSERT INTO order_items(
     id, quantity, order_id, product_id)

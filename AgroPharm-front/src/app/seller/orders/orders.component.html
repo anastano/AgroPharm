@@ -58,6 +58,7 @@
               </tbody>
             </table>
             <button *ngIf="order.status === 'CREATED'" class="btn btn-primary" (click)="approveOrder(order.id)">Odobri narudžbinu</button>
+            <button *ngIf="order.status === 'CREATED'" class="btn btn-danger" (click)="rejectOrder(order.id)">Odbij narudžbinu</button>
         </div>
         </div>
       </div>

@@ -49,6 +49,7 @@ export class ClientOrdersComponent implements OnInit{
       response => {
         console.log('Order cancelled', response);
         this.toastr.success('Narudžbina je uspešno otkazana!', 'Uspeh');
+        this.toastr.info('Dobili ste 5 kaznenih bodova!', 'Obaveštenje');
         this.loadOrders();
       },
       error => {

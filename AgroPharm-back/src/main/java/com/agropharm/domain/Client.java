@@ -24,7 +24,9 @@ public class Client extends User{
     }
 
     public void setPenaltyPoints(int penaltyPoints) {
-        this.penaltyPoints = penaltyPoints;
+        int penaltyPointsSum = getPenaltyPoints();
+        penaltyPointsSum += penaltyPoints;
+        this.penaltyPoints = penaltyPointsSum;
     }
 
     public Boolean getEnabled() {

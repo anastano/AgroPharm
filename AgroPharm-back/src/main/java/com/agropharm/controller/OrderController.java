@@ -61,12 +61,24 @@ public class OrderController {
         return ResponseEntity.ok().body("{\"message\": \"Order approved\"}");
     }
 
+    @PostMapping("/reject/{orderId}")
+    public ResponseEntity<String> rejectOrder(@PathVariable Integer orderId) {
+        try {
+            orderService.updateOrderStatus(orderId, OrderStatus.REJECTED);
+            //todo odbij
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("{\"message\": \"Bad request\"}");
+        }
+        return ResponseEntity.ok().body("{\"message\": \"Order rejected successfully\"}");
+    }
 
     @PostMapping(value = "/cancel/{orderId}")
-    public ResponseEntity<String> cancelOrder(@PathVariable Integer orderId) {
+    public ResponseEntity<String> cancelOrder(@PathVariable Integer orderId, Principal user) {
         try {
             orderService.updateOrderStatus(orderId, OrderStatus.CANCELLED);
-            //TODO: add penalty points
+            User client = userService.getByEmail(user.getName());
+            userService.awardPenaltyPoints(client.getId());
+            //TODO: obavestenja korisniku
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("{\"message\": \"Bad request\"}");
         }
@@ -74,10 +86,12 @@ public class OrderController {
     }
 
     @PostMapping(value = "/collect-for-delivery/{orderId}")
-    public ResponseEntity<String> collectOrderForDelivery(@PathVariable Integer orderId ) {
+    public ResponseEntity<String> collectOrderForDelivery(@PathVariable Integer orderId, Principal user ) {
         try {
             orderService.updateOrderStatus(orderId, OrderStatus.COLLECTED_FOR_DELIVERY);
-            //TODO: assign deliverer
+            User deliverer = userService.getByEmail(user.getName());
+            orderService.assignDeliverer(orderId, deliverer);
+            //TODO: obavestenja, korisniku
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("{\"message\": \"Bad request\"}");
         }
@@ -104,25 +118,25 @@ public class OrderController {
         return ResponseEntity.ok().body("{\"message\": \"Order delivery completed not successfully\"}");
     }
 
-    /*@PostMapping(value = "/create")
+    @PostMapping(value = "/create")
     public ResponseEntity<String> createOrder(@RequestBody OrderRequestDTO orderRequest, Principal user) {
         try {
             User client = userService.getByEmail(user.getName());
             UserDTO userDTO = (UserDTO) new DTOUtils().convertToDto(client, new UserDTO());
             orderRequest.setClient(userDTO);
             Order createdOrder = orderService.createOrder(orderRequest);
-            System.out.println("items: \n" + orderRequest.getOrderItems());
-            //System.out.println("address: \n" + orderRequest.getAddress());
-            System.out.println("client: \n" + orderRequest.getClient());
-
+            //TODO: obavestenja da je nova kreirana, selleru
 
         }catch (Exception e){
             return ResponseEntity.badRequest().body("{\"message\":\"" + e.getMessage() + "\"}");
         }
         return ResponseEntity.ok().body("{\"message\": \"You have successfully made an order\"}");
 
-    }*/
-    @PostMapping(value = "/create")
+    }
+
+    //metoda za pravljenje narudzbina za prijavljene i neprijavljene klijente, potrebno jos obraditi cuvanje podataka o neautentifikovanom klijentu
+
+    /*@PostMapping(value = "/create")
     public ResponseEntity<String> createOrder(@RequestBody OrderRequestDTO orderRequest, Principal user) {
         try {
             if (user != null) {
@@ -137,6 +151,6 @@ public class OrderController {
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("{\"message\":\"" + e.getMessage() + "\"}");
         }
-    }
+    }*/
 
 }
