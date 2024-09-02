@@ -1,8 +1,10 @@
 package com.agropharm.controller;
 
 import com.agropharm.domain.Product;
+import com.agropharm.dto.CategoryDTO;
 import com.agropharm.dto.ProductDTO;
 import com.agropharm.mapper.DTOUtils;
+import com.agropharm.service.CategoryService;
 import com.agropharm.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -21,6 +23,9 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
+    @Autowired
+    private CategoryService categoryService;
+
     /*@GetMapping("/all")
     public Page<Product> getAllProducts(@RequestParam(defaultValue = "0") int page,
                                         @RequestParam(defaultValue = "10") int size) {
@@ -32,5 +37,11 @@ public class ProductController {
     public ResponseEntity<Set<ProductDTO>> getAll() {
         Set<ProductDTO> productDTOS = (Set<ProductDTO>) new DTOUtils().convertToDtos(productService.getAll(), new ProductDTO());
         return new ResponseEntity<>(productDTOS, HttpStatus.OK);
+    }
+
+    @GetMapping("/categories")
+    public ResponseEntity<Set<CategoryDTO>> getAllCategories() {
+        Set<CategoryDTO> categoryDTOS = (Set<CategoryDTO>) new DTOUtils().convertToDtos(categoryService.getAll(), new CategoryDTO());
+        return new ResponseEntity<>(categoryDTOS, HttpStatus.OK);
     }
 }

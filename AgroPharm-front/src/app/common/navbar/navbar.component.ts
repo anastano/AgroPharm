@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit{
   public currentUser: CurrentUser | undefined;
+  isMenuCollapsed = true;
 
   constructor(private authService: AuthService, private router: Router){}
 

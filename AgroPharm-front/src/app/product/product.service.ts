@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../environment/environment';
 import { Product, ProductCreation } from './model/product.model';
+import { Category } from './model/category.model';
 
 @Injectable({
   providedIn: 'root'
@@ -41,4 +42,8 @@ export class ProductService {
 
     //return this.http.get<Product[]>(environment.apiHost + `products/all`);
   }  
+
+  getAllCategories(): Observable<Category[]> {
+    return this.http.get<Category[]>(environment.apiHost + `products/categories`);
+  }
 }
