@@ -24,16 +24,28 @@
         <li class="nav-item" *ngIf="currentUser?.role === 'ADMIN'">
           <a class="nav-link" href="/all-products">Proizvodi</a>
         </li>
+        <li class="nav-item" *ngIf="currentUser?.role === 'ADMIN'">
+          <a class="nav-link" href="/create-product">Dodaj proizvod</a>
+        </li>
   
         <!-- Seller -->
+        <li class="nav-item active" *ngIf="currentUser?.role === 'SELLER'">
+          <a class="nav-link" href="/admin-profile">Profil prodavca</a>
+        </li>
         <li class="nav-item active" *ngIf="currentUser?.role === 'SELLER'">
           <a class="nav-link" href="/seller-orders">Narudžbine</a>
         </li>
         <li class="nav-item" *ngIf="currentUser?.role === 'SELLER'">
           <a class="nav-link" href="/all-products">Proizvodi</a>
         </li>
+        <li class="nav-item" *ngIf="currentUser?.role === 'SELLER'">
+          <a class="nav-link" href="/create-product">Dodaj proizvod</a>
+        </li>
 
         <!-- Deliverer -->
+        <li class="nav-item active" *ngIf="currentUser?.role === 'DELIVERER'">
+          <a class="nav-link" href="/admin-profile">Profil dostavljača</a>
+        </li>
         <li class="nav-item active" *ngIf="currentUser?.role === 'DELIVERER'">
           <a class="nav-link" href="/deliverer-orders">Narudžbine</a>
         </li>

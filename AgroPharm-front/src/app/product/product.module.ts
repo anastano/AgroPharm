@@ -8,13 +8,15 @@ import { CartComponent } from './cart/cart.component';
 import { AddressFormComponent } from './address-form/address-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UnauthenticatedOrderComponent } from './unauthenticated-order/unauthenticated-order.component';
+import { CreateProductComponent } from './create-product/create-product.component';
 
 @NgModule({
   declarations: [
     AllProductsComponent,
     CartComponent,
     AddressFormComponent,
-    UnauthenticatedOrderComponent
+    UnauthenticatedOrderComponent,
+    CreateProductComponent
   ],
   imports: [
     CommonModule,

@@ -12,7 +12,7 @@ import { ClientOrdersComponent } from './client/client-orders/client-orders.comp
 import { DelivererOrdersComponent } from './deliverer/deliverer-orders/deliverer-orders.component';
 import { CartComponent } from './product/cart/cart.component';
 import { UnauthenticatedOrderComponent } from './product/unauthenticated-order/unauthenticated-order.component';
-
+import { CreateProductComponent } from './product/create-product/create-product.component';
 
 const routes: Routes = [
   {path: '',  component: HomeComponent},
@@ -26,6 +26,7 @@ const routes: Routes = [
   {path: 'deliverer-orders', component: DelivererOrdersComponent},
   {path: 'cart', component: CartComponent},
   {path: 'unauthenticated-order', component: UnauthenticatedOrderComponent },
+  {path: 'create-product', component: CreateProductComponent},
 
 
   

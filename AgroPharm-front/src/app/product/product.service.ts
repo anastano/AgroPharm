@@ -46,4 +46,8 @@ export class ProductService {
   getAllCategories(): Observable<Category[]> {
     return this.http.get<Category[]>(environment.apiHost + `products/categories`);
   }
+
+  createProduct(product: ProductCreation): Observable<Product> {
+    return this.http.post<Product>(environment.apiHost + `products/create`, product);
+  }
 }

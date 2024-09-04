@@ -1,0 +1,41 @@
+<form (ngSubmit)="onSubmit()" #productForm="ngForm">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" class="form-control" id="name" [(ngModel)]="product.name" name="name" required>
+    </div>
+  
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea class="form-control" id="description" [(ngModel)]="product.description" name="description" required></textarea>
+    </div>
+  
+    <div class="form-group">
+      <label for="price">Price</label>
+      <input type="number" class="form-control" id="price" [(ngModel)]="product.price" name="price" required>
+    </div>
+  
+    <div class="form-group">
+      <label for="supplies">Supplies</label>
+      <input type="number" class="form-control" id="supplies" [(ngModel)]="product.supplies" name="supplies" required>
+    </div>
+  
+    <div class="form-group">
+      <label for="reserved">Reserved</label>
+      <input type="number" class="form-control" id="reserved" [(ngModel)]="product.reserved" name="reserved" required>
+    </div>
+  
+    <div class="form-group">
+      <label for="category">Category</label>
+      <select class="form-control" id="category" [(ngModel)]="product.categoryId" name="categoryId" required>
+        <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
+      </select>
+    </div>
+  
+    <div class="form-group">
+      <label for="imageUrl">Image URL</label>
+      <input type="text" class="form-control" id="imageUrl" [(ngModel)]="product.imageUrl" name="imageUrl">
+    </div>
+  
+    <button type="submit" class="btn btn-primary">Create Product</button>
+  </form>
+  
