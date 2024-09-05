@@ -1,8 +1,12 @@
 package com.agropharm.controller;
 
+import com.agropharm.domain.Order;
 import com.agropharm.domain.Product;
+import com.agropharm.domain.User;
 import com.agropharm.dto.CategoryDTO;
+import com.agropharm.dto.ProductCreationDTO;
 import com.agropharm.dto.ProductDTO;
+import com.agropharm.dto.UserDTO;
 import com.agropharm.mapper.DTOUtils;
 import com.agropharm.service.CategoryService;
 import com.agropharm.service.ProductService;
@@ -43,5 +47,37 @@ public class ProductController {
     public ResponseEntity<Set<CategoryDTO>> getAllCategories() {
         Set<CategoryDTO> categoryDTOS = (Set<CategoryDTO>) new DTOUtils().convertToDtos(categoryService.getAll(), new CategoryDTO());
         return new ResponseEntity<>(categoryDTOS, HttpStatus.OK);
+    }
+
+    @PostMapping("/create")
+    public ResponseEntity<String> createProduct(@RequestBody ProductCreationDTO productCreationDTO) {
+        try {
+            Product createdProduct = productService.createProduct(productCreationDTO);
+
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body("{\"message\":\"" + e.getMessage() + "\"}");
+        }
+        return ResponseEntity.ok().body("{\"message\": \"You have successfully added new product\"}");
+    }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<String> updateProduct(@PathVariable Integer id, @RequestBody ProductDTO productUpdateDTO) {
+        try {
+            Product updatedProduct = productService.updateProduct(id, productUpdateDTO);
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body("{\"message\":\"" + e.getMessage() + "\"}");
+        }
+        return ResponseEntity.ok().body("{\"message\": \"You have successfully updated product\"}");
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deleteProduct(@PathVariable Integer id) {
+        try {
+            productService.deleteProduct(id);
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body("{\"message\":\"" + e.getMessage() + "\"}");
+        }
+        return ResponseEntity.ok().body("{\"message\": \"You have successfully deleted product\"}");
+
     }
 }

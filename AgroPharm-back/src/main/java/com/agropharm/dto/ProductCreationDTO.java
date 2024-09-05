@@ -1,40 +1,17 @@
-package com.agropharm.domain;
+package com.agropharm.dto;
 
+import com.agropharm.mapper.DTOEntity;
 
-import javax.persistence.*;
-
-@Entity
-@Table(name = "products")
-public class Product {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
-    @Column(name = "name")
+public class ProductCreationDTO implements DTOEntity {
     private String name;
-    @Column(name = "description")
     private String description;
-    @Column(name = "price")
     private double price;
-    @Column(name = "supplies")
     private double supplies;
-    @Column(name = "reserved")
     private double reserved;
-    @ManyToOne// (cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "category_id", referencedColumnName = "id")
-    private Category category;
-
-    @Column(name = "image_url")
+    private Integer categoryId;
     private String imageUrl;
 
-
-    public Product(){
-    }
-
-    public Integer getId(){ return id; }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    public ProductCreationDTO(){}
 
     public String getName() {
         return name;
@@ -76,12 +53,12 @@ public class Product {
         this.reserved = reserved;
     }
 
-    public Category getCategory() {
-        return category;
+    public Integer getCategoryId() {
+        return categoryId;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setCategoryId(Integer categoryId) {
+        this.categoryId = categoryId;
     }
 
     public String getImageUrl() {
