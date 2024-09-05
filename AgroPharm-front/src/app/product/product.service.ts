@@ -50,4 +50,12 @@ export class ProductService {
   createProduct(product: ProductCreation): Observable<Product> {
     return this.http.post<Product>(environment.apiHost + `products/create`, product);
   }
+
+  updateProduct(id: number, product: Product): Observable<Product> {
+    return this.http.put<Product>(environment.apiHost + `products/update/${id}`, product);
+  }
+
+  deleteProduct(productId: number): Observable<any> {
+    return this.http.delete(environment.apiHost + `products/delete/${productId}`);
+  }
 }

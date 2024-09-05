@@ -5,6 +5,9 @@ import { CartService } from '../cart.service';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../auth/auth.service';
 import { CurrentUser } from '../../auth/model/auth.model';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { EditProductComponent } from '../edit-product/edit-product.component';
+import { ConfirmDeleteComponent } from '../confirm-delete/confirm-delete.component';
 
 @Component({
   selector: 'app-all-products',
@@ -19,7 +22,7 @@ export class AllProductsComponent implements OnInit {
   public currentUser: CurrentUser | undefined;
 
 
-  constructor(private productService: ProductService, private cartService: CartService, private toastr: ToastrService, private authService: AuthService) { }
+  constructor(private productService: ProductService, private cartService: CartService, private toastr: ToastrService, private authService: AuthService, private modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.loadProducts();
@@ -48,5 +51,40 @@ export class AllProductsComponent implements OnInit {
     this.cartService.addToCart(product);
     this.toastr.success('Proizvod ' + product.name + ' je dodat u korpu', 'Uspeh');
   }
+
+  openEditModal(product: Product) {
+    const modalRef = this.modalService.open(EditProductComponent);
+    modalRef.componentInstance.product = { ...product };
+
+    modalRef.result.then((result) => {
+      if (result === 'Updated') {
+        this.loadProducts();
+      }
+    }).catch((error) => {
+      console.log('Modal dismissed');
+    });
+  }
+
+  deleteProduct(productId: number, productName: string) {
+    const modalRef = this.modalService.open(ConfirmDeleteComponent);
+    modalRef.componentInstance.productName = productName;
+  
+    modalRef.result.then((result) => {
+      if (result === 'confirm') {
+        this.productService.deleteProduct(productId).subscribe(
+          () => {
+            this.toastr.success('Proizvod je uspešno obrisan', 'Uspeh');
+            this.loadProducts();
+          },
+          (error) => {
+            this.toastr.error('Došlo je do greške prilikom brisanja proizvoda', 'Greška');
+          }
+        );
+      }
+    }).catch((error) => {
+      console.log('Modal dismissed');
+    });
+  }
+
 
 }

@@ -1,0 +1,11 @@
+<div class="modal-header">
+    <h4 class="modal-title">Potvrda brisanja</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+<div class="modal-body">
+    <p>Da li ste sigurni da želite da obrišete proizvod "{{ productName }}"?</p>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss()">Odustani</button>
+    <button type="button" class="btn btn-danger" (click)="activeModal.close('confirm')">Obriši</button>
+</div>

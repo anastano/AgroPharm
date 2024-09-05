@@ -58,6 +58,26 @@ public class ProductController {
             return ResponseEntity.badRequest().body("{\"message\":\"" + e.getMessage() + "\"}");
         }
         return ResponseEntity.ok().body("{\"message\": \"You have successfully added new product\"}");
+    }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<String> updateProduct(@PathVariable Integer id, @RequestBody ProductDTO productUpdateDTO) {
+        try {
+            Product updatedProduct = productService.updateProduct(id, productUpdateDTO);
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body("{\"message\":\"" + e.getMessage() + "\"}");
+        }
+        return ResponseEntity.ok().body("{\"message\": \"You have successfully updated product\"}");
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deleteProduct(@PathVariable Integer id) {
+        try {
+            productService.deleteProduct(id);
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body("{\"message\":\"" + e.getMessage() + "\"}");
+        }
+        return ResponseEntity.ok().body("{\"message\": \"You have successfully deleted product\"}");
 
     }
 }

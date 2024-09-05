@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ProductCreation } from '../model/product.model';
 import { Category } from '../model/category.model';
 import { ProductService } from '../product.service';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-create-product',
@@ -21,7 +23,7 @@ export class CreateProductComponent implements OnInit{
 
   categories: Category[] = [];
 
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService, private router: Router, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.productService.getAllCategories().subscribe(data => {
@@ -32,8 +34,11 @@ export class CreateProductComponent implements OnInit{
   onSubmit(): void {
     this.productService.createProduct(this.product).subscribe(response => {
       console.log('Product created successfully', response);
+      this.toastr.success('Proizvod je uspešno kreiran', 'Uspeh');
+      this.router.navigate(['/all-products']); 
     }, error => {
       console.error('Error creating product', error);
+      this.toastr.error('Greška prilikom kreiranja proizvoda', 'Greška');
     });
   }
 }
