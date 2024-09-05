@@ -52,7 +52,7 @@
             <h5 class="card-title">{{ product.name }}</h5>
             <p class="card-text">Opis: {{ product.description }}</p>
             <p class="card-text">Cena: {{ product.price | currency: 'RSD ' }}</p>
-            <p class="card-text">Kategorija: {{ product.category?.name }}</p>
+            <p class="card-text">Kategorija: {{ product.category.name }}</p>
             <p class="card-text" *ngIf="currentUser?.role === 'ADMIN' || currentUser?.role === 'SELLER'">
               Stanje na zalihama: {{ product.supplies }}
             </p>

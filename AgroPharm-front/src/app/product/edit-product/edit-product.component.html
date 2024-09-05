@@ -1,0 +1,37 @@
+<div class="modal-header">
+    <h5 class="modal-title">Izmeni proizvod</h5>
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <form (ngSubmit)="onSubmit()" #productForm="ngForm">
+      <div class="form-group">
+        <label for="name">Naziv</label>
+        <input type="text" class="form-control" id="name" [(ngModel)]="product.name" name="name" required>
+      </div>
+      <div class="form-group">
+        <label for="description">Opis</label>
+        <textarea class="form-control" id="description" [(ngModel)]="product.description" name="description" required></textarea>
+      </div>
+      <div class="form-group">
+        <label for="price">Cena</label>
+        <input type="number" class="form-control" id="price" [(ngModel)]="product.price" name="price" required>
+      </div>
+      <div class="form-group">
+        <label for="supplies">Zalihe</label>
+        <input type="number" class="form-control" id="supplies" [(ngModel)]="product.supplies" name="supplies" required>
+      </div>
+      <div class="form-group">
+        <label for="category">Kategorija</label>
+        <select class="form-control" id="category" [(ngModel)]="product.category.id" name="categoryId" required>
+          <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="imageUrl">URL slike</label>
+        <input type="text" class="form-control" id="imageUrl" [(ngModel)]="product.imageUrl" name="imageUrl">
+      </div>
+  
+      <button type="submit" class="btn btn-primary">Sačuvaj izmene</button>
+    </form>
+  </div>
+  

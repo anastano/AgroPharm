@@ -46,4 +46,16 @@ export class ProductService {
   getAllCategories(): Observable<Category[]> {
     return this.http.get<Category[]>(environment.apiHost + `products/categories`);
   }
+
+  createProduct(product: ProductCreation): Observable<Product> {
+    return this.http.post<Product>(environment.apiHost + `products/create`, product);
+  }
+
+  updateProduct(id: number, product: Product): Observable<Product> {
+    return this.http.put<Product>(environment.apiHost + `products/update/${id}`, product);
+  }
+
+  deleteProduct(productId: number): Observable<any> {
+    return this.http.delete(environment.apiHost + `products/delete/${productId}`);
+  }
 }

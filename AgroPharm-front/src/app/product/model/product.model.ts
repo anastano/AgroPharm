@@ -7,7 +7,7 @@ export interface Product {
     price: number;
     supplies: number;
     reserved: number;
-    category?: Category;
+    category: Category;
     imageUrl?: string; 
 }
 
