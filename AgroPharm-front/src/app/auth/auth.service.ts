@@ -74,5 +74,9 @@ export class AuthService {
     const token = this.tokenStorage.getAccessToken();
     return !!token;
   }
+
+  updateUser(user: User): Observable<User> {
+    return this.http.put<User>(environment.apiHost + 'users/update', user);
+  }
   
 }

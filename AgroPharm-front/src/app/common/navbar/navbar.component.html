@@ -16,7 +16,7 @@
         
         <!-- Admin -->
         <li class="nav-item active" *ngIf="currentUser?.role === 'ADMIN'">
-          <a class="nav-link" href="/admin-profile">Profil admina</a>
+          <a class="nav-link" href="/profile">Profil admina</a>
         </li>
         <li class="nav-item active" *ngIf="currentUser?.role === 'ADMIN'">
           <a class="nav-link" href="/all-orders">Narudžbine</a>
@@ -27,7 +27,7 @@
   
         <!-- Seller -->
         <li class="nav-item active" *ngIf="currentUser?.role === 'SELLER'">
-          <a class="nav-link" href="/admin-profile">Profil prodavca</a>
+          <a class="nav-link" href="/profile">Profil prodavca</a>
         </li>
         <li class="nav-item active" *ngIf="currentUser?.role === 'SELLER'">
           <a class="nav-link" href="/seller-orders">Narudžbine</a>
@@ -38,7 +38,7 @@
 
         <!-- Deliverer -->
         <li class="nav-item active" *ngIf="currentUser?.role === 'DELIVERER'">
-          <a class="nav-link" href="/admin-profile">Profil dostavljača</a>
+          <a class="nav-link" href="/profile">Profil dostavljača</a>
         </li>
         <li class="nav-item active" *ngIf="currentUser?.role === 'DELIVERER'">
           <a class="nav-link" href="/deliverer-orders">Narudžbine</a>
@@ -46,7 +46,7 @@
   
         <!-- Client -->
         <li class="nav-item" *ngIf="currentUser?.role === 'CLIENT'">
-          <a class="nav-link" href="/client-profile">Profil klijenta</a>
+          <a class="nav-link" href="/profile">Profil klijenta</a>
         </li>
         <li class="nav-item active" *ngIf="currentUser?.role === 'CLIENT'">
           <a class="nav-link" href="/client-orders">Narudžbine</a>

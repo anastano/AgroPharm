@@ -33,4 +33,8 @@ public class UserService {
         client.setPenaltyPoints(5);
         clientRepository.save(client);
     }
+
+    public User save(User user){
+        return userRepository.save(user);
+    }
 }

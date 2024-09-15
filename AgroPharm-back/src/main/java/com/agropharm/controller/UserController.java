@@ -7,10 +7,7 @@ import com.agropharm.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 
@@ -27,5 +24,25 @@ public class UserController {
         UserDTO userDTO = (UserDTO) new DTOUtils().convertToDto(user, new UserDTO());
         return new ResponseEntity<>(userDTO, HttpStatus.OK);
     }
+
+    @PutMapping("/update")
+    public ResponseEntity<UserDTO> updateUser(@RequestBody UserDTO userDTO, Principal principal) {
+        User user = userService.getByEmail(principal.getName());
+
+        user.setFirstName(userDTO.firstName);
+        user.setLastName(userDTO.lastName);
+        user.setPhoneNumber(userDTO.phoneNumber);
+
+        user.getAddress().setStreet(userDTO.address.street);
+        user.getAddress().setStreetNumber(userDTO.address.streetNumber);
+        user.getAddress().setCity(userDTO.address.city);
+        user.getAddress().setCountry(userDTO.address.country);
+        user.getAddress().setPostalCode(userDTO.address.postalCode);
+
+        User updatedUser = userService.save(user);
+        UserDTO updatedUserDTO = (UserDTO) new DTOUtils().convertToDto(updatedUser, new UserDTO());
+        return new ResponseEntity<>(updatedUserDTO, HttpStatus.OK);
+    }
+
 
 }
