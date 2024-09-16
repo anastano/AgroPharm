@@ -99,48 +99,5 @@ public class UserService {
 
         return user;
     }
-
-    /*public boolean registerUser(RegistrationDTO registrationDTO) {
-        Address address = new Address(registrationDTO.street, registrationDTO.streetNumber, registrationDTO.city, registrationDTO.country, registrationDTO.postalCode);
-        addressRepository.save(address);
-
-        User user = new User();
-        user.setEmail(registrationDTO.email);
-        user.setFirstName(registrationDTO.firstName);
-        user.setLastName(registrationDTO.lastName);
-        user.setPhoneNumber(registrationDTO.phoneNumber);
-        user.setAddress(address);
-        user.setPassword(registrationDTO.password);
-
-        switch (registrationDTO.userType.toLowerCase()) {
-            case "admin":
-                Admin admin = new Admin();
-                admin.setUser(user);
-                admin.setIsSenior(registrationDTO.isSenior);
-                adminRepository.save(admin);
-                break;
-            case "seller":
-                Seller seller = new Seller();
-                seller.setUser(user);
-                seller.setIsEnabled(registrationDTO.isEnabled);
-                sellerRepository.save(seller);
-                break;
-            case "deliverer":
-                Deliverer deliverer = new Deliverer();
-                deliverer.setUser(user);
-                deliverer.setIsEnabled(registrationDTO.isEnabled);
-                delivererRepository.save(deliverer);
-                break;
-            case "client":
-                Client client = new Client();
-                client.setUser(user);
-                client.setPenaltyPoints(registrationDTO.penaltyPoints);
-                client.setIsEnabled(registrationDTO.isEnabled);
-                clientRepository.save(client);
-                break;
-            default:
-                return false;
-        }
-        return true;
-    }*/
+    
 }

@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../../auth/auth.service';
-import { UserRegistration } from '../../auth/model/auth.model';
+import { UserRegistration } from '../model/auth.model';
+import { AuthService } from '../auth.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-register-user',
-  templateUrl: './register-user.component.html',
-  styleUrl: './register-user.component.css'
+  selector: 'app-register-client',
+  templateUrl: './register-client.component.html',
+  styleUrl: './register-client.component.css'
 })
-export class RegisterUserComponent {
+export class RegisterClientComponent {
   user: UserRegistration = {
     email: '',
     firstName: '',
@@ -21,7 +21,7 @@ export class RegisterUserComponent {
     country: '',
     postalCode: '',
     isSenior: false,
-    userType: ''
+    userType: 'client'
   };
 
   constructor(private authStervice: AuthService, private toastr: ToastrService) {}

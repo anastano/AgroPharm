@@ -86,7 +86,7 @@ public class WebSecurityConfig {
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
 
-        return (web) -> web.ignoring().antMatchers(HttpMethod.POST, "/api/auth/register")
+        return (web) -> web.ignoring().antMatchers(HttpMethod.POST, "/api/users/register")
                 .antMatchers(HttpMethod.POST, "/api/auth/login")
                 .antMatchers(HttpMethod.GET, "/api/products/all")
                 .antMatchers(HttpMethod.GET, "/api/products/categories");

@@ -14,6 +14,7 @@ import { CartComponent } from './product/cart/cart.component';
 import { UnauthenticatedOrderComponent } from './product/unauthenticated-order/unauthenticated-order.component';
 import { CreateProductComponent } from './product/create-product/create-product.component';
 import { RegisterUserComponent } from './admin/register-user/register-user.component';
+import { RegisterClientComponent } from './auth/register-client/register-client.component';
 
 const routes: Routes = [
   {path: '',  component: HomeComponent},
@@ -28,6 +29,8 @@ const routes: Routes = [
   {path: 'unauthenticated-order', component: UnauthenticatedOrderComponent },
   {path: 'create-product', component: CreateProductComponent},
   {path: 'register-user', component: RegisterUserComponent},
+  {path: 'register-client', component: RegisterClientComponent},
+
 
 
 
