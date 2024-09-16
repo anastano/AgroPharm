@@ -36,6 +36,10 @@ public class UserService {
         return new HashSet<>(userRepository.findAll());
     }
 
+    public List<User> getAllByRole(String roleName) {
+        return userRepository.findByRoleName(roleName);
+    }
+
 
     public void awardPenaltyPoints(Integer userId) throws Exception {
         Optional<Client> clientDB = clientRepository.findById(userId);

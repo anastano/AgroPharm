@@ -16,6 +16,7 @@ import { CreateProductComponent } from './product/create-product/create-product.
 import { RegisterUserComponent } from './admin/register-user/register-user.component';
 import { RegisterClientComponent } from './auth/register-client/register-client.component';
 import { AllUsersComponent } from './admin/all-users/all-users.component';
+import { NotificationsComponent } from './common/notifications/notifications.component';
 
 const routes: Routes = [
   {path: '',  component: HomeComponent},
@@ -32,6 +33,7 @@ const routes: Routes = [
   {path: 'register-user', component: RegisterUserComponent},
   {path: 'register-client', component: RegisterClientComponent},
   {path: 'all-users', component: AllUsersComponent},
+  {path: 'notifications', component: NotificationsComponent},
 
 
 

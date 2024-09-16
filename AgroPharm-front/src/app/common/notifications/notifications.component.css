@@ -1,0 +1,43 @@
+.card {
+  max-width: 100%;
+}
+
+.card-body {
+  padding: 10px;
+}
+
+.card-title {
+  margin-bottom: 0.5rem;
+}
+
+.fw-bold {
+  font-weight: 700;
+}
+
+.btn-sm {
+  font-size: 0.875rem;
+}
+
+.me-2 {
+  margin-right: 0.5rem;
+}
+
+.mt-4 {
+  margin-top: 1.5rem;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.justify-content-between {
+  justify-content: space-between;
+}
+
+i.fas {
+  font-size: 0.875rem;
+}

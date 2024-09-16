@@ -33,6 +33,9 @@
         <li class="nav-item active" *ngIf="currentUser?.role === 'ADMIN'">
           <a class="nav-link" href="/all-users">Korisnici</a>
         </li>
+        <li class="nav-item active" *ngIf="currentUser?.role === 'ADMIN'">
+          <a class="nav-link" href="/notifications">Obaveštenja</a>
+        </li>
   
         <!-- Seller -->
         <li class="nav-item active" *ngIf="currentUser?.role === 'SELLER'">
@@ -44,6 +47,9 @@
         <li class="nav-item" *ngIf="currentUser?.role === 'SELLER'">
           <a class="nav-link" href="/all-products">Proizvodi</a>
         </li>
+        <li class="nav-item active" *ngIf="currentUser?.role === 'SELLER'">
+          <a class="nav-link" href="/notifications">Obaveštenja</a>
+        </li>
 
         <!-- Deliverer -->
         <li class="nav-item active" *ngIf="currentUser?.role === 'DELIVERER'">
@@ -51,6 +57,9 @@
         </li>
         <li class="nav-item active" *ngIf="currentUser?.role === 'DELIVERER'">
           <a class="nav-link" href="/deliverer-orders">Narudžbine</a>
+        </li>
+        <li class="nav-item active" *ngIf="currentUser?.role === 'DELIVERER'">
+          <a class="nav-link" href="/notifications">Obaveštenja</a>
         </li>
   
         <!-- Client -->
@@ -66,6 +75,10 @@
         <li class="nav-item active" *ngIf="currentUser?.role === 'CLIENT'">
           <a class="nav-link" href="/cart">Korpa</a>
         </li>
+        <li class="nav-item active" *ngIf="currentUser?.role === 'CLIENT'">
+          <a class="nav-link" href="/notifications">Obaveštenja</a>
+        </li>
+
       </ul>
       <ul class="navbar-nav ml-auto">
         <li class="nav-item" *ngIf="currentUser?.role" (click)="onLogout()">

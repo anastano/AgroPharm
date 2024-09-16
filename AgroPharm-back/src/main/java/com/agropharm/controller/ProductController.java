@@ -9,6 +9,7 @@ import com.agropharm.dto.ProductDTO;
 import com.agropharm.dto.UserDTO;
 import com.agropharm.mapper.DTOUtils;
 import com.agropharm.service.CategoryService;
+import com.agropharm.service.NotificationService;
 import com.agropharm.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -29,6 +30,9 @@ public class ProductController {
 
     @Autowired
     private CategoryService categoryService;
+
+    @Autowired
+    private NotificationService notificationService;
 
     /*@GetMapping("/all")
     public Page<Product> getAllProducts(@RequestParam(defaultValue = "0") int page,
@@ -53,6 +57,8 @@ public class ProductController {
     public ResponseEntity<String> createProduct(@RequestBody ProductCreationDTO productCreationDTO) {
         try {
             Product createdProduct = productService.createProduct(productCreationDTO);
+            String content = "Novi proizvod je dodat.";
+            notificationService.createNotificationForAllUsersByRole("Novi proizvod", content, "SELLER");
 
         }catch (Exception e){
             return ResponseEntity.badRequest().body("{\"message\":\"" + e.getMessage() + "\"}");
@@ -64,6 +70,9 @@ public class ProductController {
     public ResponseEntity<String> updateProduct(@PathVariable Integer id, @RequestBody ProductDTO productUpdateDTO) {
         try {
             Product updatedProduct = productService.updateProduct(id, productUpdateDTO);
+            String content = "Proizvod " + productUpdateDTO.name + " je izmenjen.";
+            notificationService.createNotificationForAllUsersByRole("Proizvod izmenjen", content, "SELLER");
+
         }catch (Exception e){
             return ResponseEntity.badRequest().body("{\"message\":\"" + e.getMessage() + "\"}");
         }
@@ -74,6 +83,9 @@ public class ProductController {
     public ResponseEntity<String> deleteProduct(@PathVariable Integer id) {
         try {
             productService.deleteProduct(id);
+            String content = "Proizvod sa brojem " + id + " je obrisan.";
+            notificationService.createNotificationForAllUsersByRole("Proizvod obrisan", content, "SELLER");
+
         }catch (Exception e){
             return ResponseEntity.badRequest().body("{\"message\":\"" + e.getMessage() + "\"}");
         }
