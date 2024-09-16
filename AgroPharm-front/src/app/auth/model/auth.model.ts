@@ -63,4 +63,19 @@ export interface CurrentUser {
     isSenior: boolean;
     userType: string;
   }
+
+  export interface Role {
+    id?: number,
+    name: string;
+    
+  }
+  export interface UserWRole {
+    id?: number,
+    email: string;
+    firstName: string;
+    lastName: string;
+    address: Address;
+    phoneNumber: string;
+    role: Role;
+  }
   

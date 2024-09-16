@@ -1,6 +1,7 @@
 package com.agropharm.controller;
 
 import com.agropharm.domain.User;
+import com.agropharm.dto.ProductDTO;
 import com.agropharm.dto.RegistrationDTO;
 import com.agropharm.dto.UserDTO;
 import com.agropharm.mapper.DTOUtils;
@@ -11,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.Set;
 
 @RestController
 @RequestMapping(value = "api/users")
@@ -26,6 +28,12 @@ public class UserController {
     private DelivererService delivererService;
     @Autowired
     private ClientService clientService;
+
+    @GetMapping("/all")
+    public ResponseEntity<Set<UserDTO>> getAll() {
+        Set<UserDTO> usetDTOS = (Set<UserDTO>) new DTOUtils().convertToDtos(userService.getAll(), new UserDTO());
+        return new ResponseEntity<>(usetDTOS, HttpStatus.OK);
+    }
 
     @GetMapping("/current-user")
     public ResponseEntity<UserDTO> getCurretUser(Principal current){

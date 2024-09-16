@@ -6,8 +6,10 @@ import com.agropharm.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class UserService {
@@ -29,6 +31,11 @@ public class UserService {
     public User getByEmail(String email){
         return this.userRepository.findByEmail(email);
     }
+
+    public Set<User> getAll(){
+        return new HashSet<>(userRepository.findAll());
+    }
+
 
     public void awardPenaltyPoints(Integer userId) throws Exception {
         Optional<Client> clientDB = clientRepository.findById(userId);
@@ -99,5 +106,5 @@ public class UserService {
 
         return user;
     }
-    
+
 }

@@ -1,0 +1,40 @@
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Korisnici</h2>
+      </div>
+    <div class="card shadow-sm p-4">
+        
+        <div class="card-body">
+            <table class="table table-bordered">
+                <thead class="thead-light">
+                    <tr>
+                        <th>Email</th>
+                        <th>Ime</th>
+                        <th>Prezime</th>
+                        <th>Telefon</th>
+                        <th>Adresa</th>
+                        <th>Uloga</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let user of users">
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.firstName }}</td>
+                        <td>{{ user.lastName }}</td>
+                        <td>{{ user.phoneNumber }}</td>
+                        <td>{{ user.address.street }} {{ user.address.streetNumber }}, {{ user.address.postalCode }} {{ user.address.city }}, {{ user.address.country }}</td>
+                        <td>{{ user.role.name }}</td>
+                        <td>
+                            <button class="btn btn-warning" >Blokiraj</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-danger" >Obriši</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

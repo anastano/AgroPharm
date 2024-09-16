@@ -4,7 +4,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { TokenStorage } from './interceptor/token.service';
 import { BehaviorSubject, catchError, Observable, tap, throwError } from 'rxjs';
-import { AuthenticationResponse, CurrentUser, Login, User, UserRegistration } from './model/auth.model';
+import { AuthenticationResponse, CurrentUser, Login, User, UserRegistration, UserWRole } from './model/auth.model';
 import * as JwtHelperService from "jwt-decode";
 import { jwtDecode } from 'jwt-decode';
 
@@ -81,6 +81,10 @@ export class AuthService {
 
   registerUser(user: UserRegistration): Observable<any> {
     return this.http.post<any>(environment.apiHost + `users/register`, user);
+  }
+
+  getAllUsers(): Observable<UserWRole[]> {
+    return this.http.get<UserWRole[]>(environment.apiHost + `users/all`);
   }
   
 }

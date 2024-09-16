@@ -28,9 +28,11 @@
           <a class="nav-link" href="/all-products">Proizvodi</a>
         </li>
         <li class="nav-item" *ngIf="currentUser?.role === 'ADMIN'">
-          <a class="nav-link" href="/register-user">Registracija korisnika</a>
+          <a class="nav-link" href="/register-user">Registracija korisnika</a> <!--prebaci ispod-->
         </li>
-        
+        <li class="nav-item active" *ngIf="currentUser?.role === 'ADMIN'">
+          <a class="nav-link" href="/all-users">Korisnici</a>
+        </li>
   
         <!-- Seller -->
         <li class="nav-item active" *ngIf="currentUser?.role === 'SELLER'">
