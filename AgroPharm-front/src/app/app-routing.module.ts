@@ -13,6 +13,7 @@ import { DelivererOrdersComponent } from './deliverer/deliverer-orders/deliverer
 import { CartComponent } from './product/cart/cart.component';
 import { UnauthenticatedOrderComponent } from './product/unauthenticated-order/unauthenticated-order.component';
 import { CreateProductComponent } from './product/create-product/create-product.component';
+import { RegisterUserComponent } from './admin/register-user/register-user.component';
 
 const routes: Routes = [
   {path: '',  component: HomeComponent},
@@ -26,6 +27,8 @@ const routes: Routes = [
   {path: 'cart', component: CartComponent},
   {path: 'unauthenticated-order', component: UnauthenticatedOrderComponent },
   {path: 'create-product', component: CreateProductComponent},
+  {path: 'register-user', component: RegisterUserComponent},
+
 
 
   

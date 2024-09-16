@@ -33,37 +33,37 @@ INSERT INTO roles(id, name)
 INSERT INTO users(
     id, email, password, first_name, last_name, address_id, phone_number, last_password_reset_date, role_id)
 VALUES
-    (1, 'admin@email.com', '123', 'Admin', 'Adamovic', 1111, '062123456', '2024-04-26 18:43:42.666', 1),
-    (2, 'seller@email.com', '123', 'Sale', 'Prodanovic', 1111, '062123457', '2024-04-26 18:43:42.666', 2),
-    (3, 'deli@email.com', '123', 'Deli', 'Delic', 1111, '062123457', '2024-04-26 18:43:42.666', 3),
-    (4, 'client@email.com', '123', 'Pera', 'Peric', 1111, '062123457', '2024-04-26 18:43:42.666', 4);
+    (11, 'admin@email.com', '123', 'Admin', 'Adamovic', 1111, '062123456', '2024-04-26 18:43:42.666', 1),
+    (22, 'seller@email.com', '123', 'Sale', 'Prodanovic', 1111, '062123457', '2024-04-26 18:43:42.666', 2),
+    (33, 'deli@email.com', '123', 'Deli', 'Delic', 1111, '062123457', '2024-04-26 18:43:42.666', 3),
+    (44, 'client@email.com', '123', 'Pera', 'Peric', 1111, '062123457', '2024-04-26 18:43:42.666', 4);
 
 INSERT INTO admins(
     user_id, is_senior)
 VALUES
-    (1, true);
+    (11, true);
 
 INSERT INTO sellers(
     user_id, is_enabled)
 VALUES
-    (2, true);
+    (22, true);
 
  INSERT INTO deliverers(
      user_id, is_enabled)
  VALUES
-     (3, true);
+     (33, true);
 
  INSERT INTO clients(
      user_id, penalty_points, is_enabled)
  VALUES
-     (4, 0, true);
+     (44, 0, true);
 
 INSERT INTO orders(
     id, order_date, client_id, deliverer_id, status, address_id)
 VALUES
-    (11, '2024-04-26 18:43:42', 4, null, 0, 1111),
-    (12, '2024-04-27 18:43:42', 4, null, 0, 2222),
-    (13, '2024-04-27 18:43:42', 4, 3, 1, 1111);
+    (11, '2024-04-26 18:43:42', 44, null, 0, 1111),
+    (12, '2024-04-27 18:43:42', 44, null, 0, 2222),
+    (13, '2024-04-27 18:43:42', 44, 33, 1, 1111);
 
 INSERT INTO order_items(
     id, quantity, order_id, product_id)
