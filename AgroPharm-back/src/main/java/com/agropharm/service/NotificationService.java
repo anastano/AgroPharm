@@ -35,4 +35,15 @@ public class NotificationService {
         notification.setRead(true);
         notificationRepository.save(notification);
     }
+
+    public void createNotificationForAllUsersByRole(String title, String content, String roleName) {
+        List<User> users = userService.getAllByRole(roleName);
+        for (User user : users) {
+            Notification notification = new Notification();
+            notification.setTitle(title);
+            notification.setContent(content);
+            notification.setUser(user);
+            notificationRepository.save(notification);
+        }
+    }
 }

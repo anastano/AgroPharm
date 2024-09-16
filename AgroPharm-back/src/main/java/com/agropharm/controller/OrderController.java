@@ -55,6 +55,8 @@ public class OrderController {
             Order order = orderService.getById(orderId);
             String content = "Vaša narudžbina sa brojem "+ order.getId()+ " je odobrena.";
             notificationService.createNotification("Narudžbina odobrena", content, order.getClient().getEmail());
+            String content2 = "Nova narudžbina je spremna za preuzimanje.";
+            notificationService.createNotificationForAllUsersByRole("Narudžbina spremna za preuzimanje", content2, "DELIVERER");
 
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("{\"message\": \"Bad request\"}");
@@ -66,7 +68,10 @@ public class OrderController {
     public ResponseEntity<String> rejectOrder(@PathVariable Integer orderId) {
         try {
             orderService.updateOrderStatus(orderId, OrderStatus.REJECTED);
-            //todo odbij
+            Order order = orderService.getById(orderId);
+            String content = "Vaša narudžbina sa brojem "+ order.getId()+ " je odbijena zbog pogrešnog unosa adrese.";
+            notificationService.createNotification("Narudžbina odbijena", content, order.getClient().getEmail());
+
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("{\"message\": \"Bad request\"}");
         }
@@ -79,7 +84,12 @@ public class OrderController {
             orderService.updateOrderStatus(orderId, OrderStatus.CANCELLED);
             User client = userService.getByEmail(user.getName());
             userService.awardPenaltyPoints(client.getId());
-            //TODO: obavestenja korisniku
+            Order order = orderService.getById(orderId);
+            String content = "Zbog otkazivanja narudžbine sa brojem "+ order.getId()+ ", osvojili ste 5 kaznenih bodova.";
+            notificationService.createNotification("Kazneni bodovi", content, order.getClient().getEmail());
+            String content2 = "Narudžbina sa brojem "+ order.getId()+ "je otkazana.";
+            notificationService.createNotificationForAllUsersByRole("Narudžbina otkazana", content2, "SELLER");
+
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("{\"message\": \"Bad request\"}");
         }
@@ -92,7 +102,10 @@ public class OrderController {
             orderService.updateOrderStatus(orderId, OrderStatus.COLLECTED_FOR_DELIVERY);
             User deliverer = userService.getByEmail(user.getName());
             orderService.assignDeliverer(orderId, deliverer);
-            //TODO: obavestenja, korisniku
+            Order order = orderService.getById(orderId);
+            String content = "Proizvodi iz narudžbina sa brojem "+ order.getId()+ " su pokupljeni za dostavu.";
+            notificationService.createNotification("Paket pokupljen za dostavu", content, order.getClient().getEmail());
+
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("{\"message\": \"Bad request\"}");
         }
@@ -113,6 +126,11 @@ public class OrderController {
     public ResponseEntity<String> completeOrderDeliveryUnsuccessfully(@PathVariable Integer orderId) {
         try {
             orderService.updateOrderStatus(orderId, OrderStatus.DELIVERY_COMPLETED_UNSUCCESSFULLY);
+            Order order = orderService.getById(orderId);
+            userService.awardPenaltyPoints(order.getClient().getId());
+            String content = "Vaša narudžbina sa brojem "+ order.getId()+ " nije uspešno preuzeta. Osvojili ste 5 kaznenih bodova";
+            notificationService.createNotification("Niste preuzeli narudžbinu", content, order.getClient().getEmail());
+
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("{\"message\": \"Bad request\"}");
         }
@@ -126,8 +144,8 @@ public class OrderController {
             UserDTO userDTO = (UserDTO) new DTOUtils().convertToDto(client, new UserDTO());
             orderRequest.setClient(userDTO);
             Order createdOrder = orderService.createOrder(orderRequest);
-            //TODO: obavestenja da je nova kreirana, selleru
-
+            String content = "Kreirana nova narudžbina pod brojem "+ createdOrder.getId()+ ".";
+            notificationService.createNotificationForAllUsersByRole("Nova narudžbina", content, "SELLER");
         }catch (Exception e){
             return ResponseEntity.badRequest().body("{\"message\":\"" + e.getMessage() + "\"}");
         }
