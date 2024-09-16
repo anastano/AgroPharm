@@ -23,6 +23,14 @@ public class Address {
 
     }
 
+    public Address(String street, String streetNumber, String city, String country, String postalCode) {
+        this.street = street;
+        this.streetNumber = streetNumber;
+        this.city = city;
+        this.country = country;
+        this.postalCode = postalCode;
+    }
+
     public Integer getId() {
         return id;
     }

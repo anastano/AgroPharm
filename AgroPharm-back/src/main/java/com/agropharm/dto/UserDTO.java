@@ -10,6 +10,7 @@ public class UserDTO implements DTOEntity {
     public String lastName;
     public AddressDTO address;
     public String phoneNumber;
+    public RoleDTO role;
 
     public UserDTO(){
     }
@@ -60,5 +61,13 @@ public class UserDTO implements DTOEntity {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public RoleDTO getRole() {
+        return role;
+    }
+
+    public void setRole(RoleDTO role) {
+        this.role = role;
     }
 }

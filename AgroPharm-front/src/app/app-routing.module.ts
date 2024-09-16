@@ -13,13 +13,15 @@ import { DelivererOrdersComponent } from './deliverer/deliverer-orders/deliverer
 import { CartComponent } from './product/cart/cart.component';
 import { UnauthenticatedOrderComponent } from './product/unauthenticated-order/unauthenticated-order.component';
 import { CreateProductComponent } from './product/create-product/create-product.component';
+import { RegisterUserComponent } from './admin/register-user/register-user.component';
+import { RegisterClientComponent } from './auth/register-client/register-client.component';
+import { AllUsersComponent } from './admin/all-users/all-users.component';
 
 const routes: Routes = [
   {path: '',  component: HomeComponent},
   {path: 'all-products', component: AllProductsComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'admin-profile', component: AdminProfileComponent},
-  {path: 'client-profile', component: ClientProfileComponent},
+  {path: 'profile', component: ClientProfileComponent},
   {path: 'seller-orders', component: OrdersComponent},
   {path: 'all-orders', component: AllOrdersComponent},
   {path: 'client-orders', component: ClientOrdersComponent},
@@ -27,6 +29,11 @@ const routes: Routes = [
   {path: 'cart', component: CartComponent},
   {path: 'unauthenticated-order', component: UnauthenticatedOrderComponent },
   {path: 'create-product', component: CreateProductComponent},
+  {path: 'register-user', component: RegisterUserComponent},
+  {path: 'register-client', component: RegisterClientComponent},
+  {path: 'all-users', component: AllUsersComponent},
+
+
 
 
   
