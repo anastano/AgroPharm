@@ -74,3 +74,8 @@ VALUES
     (411, 1, 12, 31),
     (511, 1, 13, 11),
     (611, 1, 13, 21);
+
+INSERT INTO notifications(
+    id, title, content, is_read, created_at, user_id)
+VALUES
+    (11, 'Narudzbina preuzeta', 'Narudzbina sa brojem 3434 je pruzeta za dostavu', false, '2024-04-26 18:43:42', 44);

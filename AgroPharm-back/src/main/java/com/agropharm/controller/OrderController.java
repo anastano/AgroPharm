@@ -7,6 +7,7 @@ import com.agropharm.dto.OrderDTO;
 import com.agropharm.dto.OrderRequestDTO;
 import com.agropharm.dto.UserDTO;
 import com.agropharm.mapper.DTOUtils;
+import com.agropharm.service.NotificationService;
 import com.agropharm.service.OrderService;
 import com.agropharm.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,15 +25,11 @@ import java.util.Set;
 public class OrderController {
     @Autowired
     private OrderService orderService;
-
     @Autowired
     private UserService userService;
+    @Autowired
+    private NotificationService notificationService;
 
-    /*@GetMapping("/all")
-    public ResponseEntity<Set<OrderDTO>> getAll(){
-        Set<OrderDTO> orderDTOs = (Set<OrderDTO>) new DTOUtils().convertToDtos(orderService.getAll(), new OrderDTO());
-        return new ResponseEntity<>(orderDTOs, HttpStatus.OK);
-    }*/
 
     @GetMapping("/all")
     public ResponseEntity<Set<OrderDTO>> getAll(HttpServletRequest request) {
@@ -55,6 +52,10 @@ public class OrderController {
     public ResponseEntity<String> approveOrder(@PathVariable Integer orderId) {
         try {
             orderService.updateOrderStatus(orderId, OrderStatus.APPROVED);
+            Order order = orderService.getById(orderId);
+            String content = "Vaša narudžbina sa brojem "+ order.getId()+ " je odobrena.";
+            notificationService.createNotification("Narudžbina odobrena", content, order.getClient().getEmail());
+
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("{\"message\": \"Bad request\"}");
         }

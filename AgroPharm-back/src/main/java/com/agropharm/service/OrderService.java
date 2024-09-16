@@ -5,6 +5,7 @@ import com.agropharm.domain.enums.OrderStatus;
 import com.agropharm.dto.OrderItemDTO;
 import com.agropharm.dto.OrderRequestDTO;
 import com.agropharm.repository.*;
+import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,6 +34,9 @@ public class OrderService {
         return new HashSet<>(orderRepository.findAll());
     }
 
+    public Order getById(Integer id){
+        return orderRepository.getById(id);
+    }
     public void updateOrderStatus(Integer orderId, OrderStatus orderStatus) throws Exception {
         Optional<Order> orderDB = orderRepository.findById(orderId);
         if (!orderDB.isPresent()) {
