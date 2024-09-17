@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Order, OrderStatus } from '../model/order.model';
 import { OrdersService } from '../orders.service';
 import { ToastrService } from 'ngx-toastr';
+import { ReportService } from '../../common/report.service';
 
 @Component({
   selector: 'app-orders',
@@ -17,7 +18,7 @@ export class OrdersComponent implements OnInit {
 
   orderStatuses = Object.values(OrderStatus);
 
-  constructor(private orderService: OrdersService, private toastr: ToastrService) { }
+  constructor(private orderService: OrdersService, private toastr: ToastrService, private reportService: ReportService) { }
 
   ngOnInit(): void {
     this.orderService.getAllOrders().subscribe(data => {
@@ -85,4 +86,9 @@ export class OrdersComponent implements OnInit {
   ngOnChanges(): void {
     this.applyFilters();
   }
+
+  downloadReport(): void {
+    this.reportService.downloadOrdersReport();
+  }
+  
 }
