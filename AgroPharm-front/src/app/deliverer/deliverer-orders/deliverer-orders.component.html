@@ -1,41 +1,42 @@
 <div class="container mt-4">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-      <h2>Narudžbine</h2>
-    </div>
-    
-    <div class="card mb-4">
-      <div class="card-header bg-success text-white" >
-        Filtriraj narudžbine
-      </div>
-      <div class="card-body">
-        <div class="row">
-          <div class="col-md-4">
-            <label for="statusFilter" class="form-label">Status:</label>
-            <select id="statusFilter" class="form-control" [(ngModel)]="selectedStatus" (ngModelChange)="applyFilters()">
-              <option value="">Svi statusi</option>
-              <option *ngFor="let status of orderStatuses" [value]="statusTranslations[status]">{{ statusTranslations[status] }}</option>
-            </select>
-          </div>
-          <div class="col-md-4">
-            <label for="delivererFilter" class="form-label">Dostavljač:</label>
-            <input id="delivererFilter" class="form-control" [(ngModel)]="delivererFilter" (ngModelChange)="applyFilters()" placeholder="Ime ili prezime dostavljača" />
-          </div>
-          <div class="col-md-4">
-            <label for="addressFilter" class="form-label">Adresa:</label>
-            <input id="addressFilter" class="form-control" [(ngModel)]="addressFilter" (ngModelChange)="applyFilters()" placeholder="Ulica, grad, država" />
-          </div>
-        <div class="col-md-4">
-            <label for="dateSort" class="form-label">Sortiraj po datumu:</label>
-            <select id="dateSort" class="form-control" [(ngModel)]="dateSortOrder" (ngModelChange)="sortOrders()">
-                <option value="asc">Rastuće</option>
-                <option value="desc">Opadajuće</option>
-            </select>
-        </div>
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Narudžbine</h2>
+  </div>
 
-        
+  <div class="card mb-4">
+    <div class="card-header bg-success text-white">
+      Filtriraj narudžbine
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-6">
+          <label for="statusFilter" class="form-label">Status:</label>
+          <select id="statusFilter" class="form-control" [(ngModel)]="selectedStatus" (ngModelChange)="applyFilters()">
+            <option value="">Svi statusi</option>
+            <option *ngFor="let status of orderStatuses" [value]="statusTranslations[status]">{{ statusTranslations[status] }}</option>
+          </select>
+        </div>
+        <div class="col-md-6">
+          <label for="delivererFilter" class="form-label">Dostavljač:</label>
+          <input id="delivererFilter" class="form-control" [(ngModel)]="delivererFilter" (ngModelChange)="applyFilters()" placeholder="Ime ili prezime dostavljača" />
+        </div>
+      </div>
+
+      <div class="row mt-3">
+        <div class="col-md-6">
+          <label for="addressFilter" class="form-label">Adresa:</label>
+          <input id="addressFilter" class="form-control" [(ngModel)]="addressFilter" (ngModelChange)="applyFilters()" placeholder="Ulica, grad, država" />
+        </div>
+        <div class="col-md-6">
+          <label for="dateSort" class="form-label">Sortiraj po datumu:</label>
+          <select id="dateSort" class="form-control" [(ngModel)]="dateSortOrder" (ngModelChange)="sortOrders()">
+            <option value="asc">Rastuće</option>
+            <option value="desc">Opadajuće</option>
+          </select>
         </div>
       </div>
     </div>
+  </div>
   
     <div class="row" *ngFor="let order of filteredOrders">
       <div class="col-md-12">
@@ -47,6 +48,9 @@
             <h5 class="card-title">Klijent: {{ order.client.firstName }} {{ order.client.lastName }}</h5>
             <h6 class="card-subtitle mb-2 text-muted">Status narudžbine: {{ statusTranslations[order.status] }}</h6>
             <ul class="list-group mb-3">
+              <li class="list-group-item">
+                <strong>Kontakt telefon klijenta:</strong> {{ order.client.phoneNumber }} 
+              </li>
               <li class="list-group-item">
                 <strong>Adresa narudžbine:</strong> {{ order.address.street }} {{ order.address.streetNumber }}, {{ order.address.city }}, {{ order.address.country }} - Poštanski broj: {{ order.address.postalCode }}
               </li>
