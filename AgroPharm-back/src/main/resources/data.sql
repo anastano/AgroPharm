@@ -14,7 +14,7 @@ INSERT INTO products (id, name, description, price, supplies, reserved, category
 (71, 'Urea', 'Mineralno đubrivo za useve', 320.00, 500, 50, 2, 'https://urbangarden.rs/wp-content/uploads/2023/06/urea.jpg'),
 (81, 'Herbicid 34N', 'Preparat za suzbijanje korova u kukuruzu', 750.00, 300, 30, 3, 'https://www.behardoo.ba/hoaloocy/2022/11/Glifomark_1l.jpg'),
 (91, 'Nika-fert 20:20:20', 'Đubrivo sa mikroelementima – B,Cu,Fe,Mn,Zn,Mo', 320.00, 500, 50, 2, 'https://agrounik.rs/wp-content/uploads/2020/06/20-20-20.jpg'),
-(10, 'Seme hibrida kukuruza', 'Kvalitetno seme kukuruza za uspešan prinos', 3800.00, 500, 50, 1, 'https://www.kws.com/rs/media/kws-kashmir-2-crop.jpg');
+(10, 'Seme hibrida kukuruza', 'Kvalitetno seme kukuruza za uspešan prinos', 3800.00, 500, 50, 1, 'https://cedrakom.rs/wp-content/uploads/2023/03/bc-hibrid-678-kukuruz-1-scaled-1.jpg');
 
 INSERT INTO addresses(
     id, street, street_number, city, country, postal_code)
