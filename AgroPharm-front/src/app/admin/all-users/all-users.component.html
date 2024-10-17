@@ -1,40 +1,76 @@
 <div class="container mt-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2>Korisnici</h2>
-      </div>
-    <div class="card shadow-sm p-4">
-        
-        <div class="card-body">
-            <table class="table table-bordered">
-                <thead class="thead-light">
-                    <tr>
-                        <th>Email</th>
-                        <th>Ime</th>
-                        <th>Prezime</th>
-                        <th>Telefon</th>
-                        <th>Adresa</th>
-                        <th>Uloga</th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let user of users">
-                        <td>{{ user.email }}</td>
-                        <td>{{ user.firstName }}</td>
-                        <td>{{ user.lastName }}</td>
-                        <td>{{ user.phoneNumber }}</td>
-                        <td>{{ user.address.street }} {{ user.address.streetNumber }}, {{ user.address.postalCode }} {{ user.address.city }}, {{ user.address.country }}</td>
-                        <td>{{ user.role.name }}</td>
-                        <td>
-                            <button class="btn btn-warning" >Blokiraj</button>
-                        </td>
-                        <td>
-                            <button class="btn btn-danger" >Obriši</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+      <h2>Korisnici</h2>
     </div>
-</div>
+  
+    <div class="card shadow-sm p-4 mb-4">
+      <div class="card-header bg-success text-white">
+        Klijenti
+      </div>
+      <div class="card-body">
+        <table class="table table-bordered">
+          <thead class="thead-light">
+            <tr>
+              <th>Email</th>
+              <th>Ime</th>
+              <th>Prezime</th>
+              <th>Telefon</th>
+              <th>Adresa</th>
+              <th>Kazneni poeni</th>
+              <th>Akcije</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let client of clients">
+              <td>{{ client.email }}</td>
+              <td>{{ client.firstName }}</td>
+              <td>{{ client.lastName }}</td>
+              <td>{{ client.phoneNumber }}</td>
+              <td>{{ client.address.street }} {{ client.address.streetNumber }}, {{ client.address.postalCode }} {{ client.address.city }}, {{ client.address.country }}</td>
+              <td>5</td>
+              <td>
+                <button class="btn btn-warning">Blokiraj</button>
+                <button class="btn btn-danger">Obriši</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  
+    <div class="card shadow-sm p-4">
+      <div class="card-header bg-success text-white">
+        Radnici
+      </div>
+      <div class="card-body">
+        <table class="table table-bordered">
+          <thead class="thead-light">
+            <tr>
+              <th>Email</th>
+              <th>Ime</th>
+              <th>Prezime</th>
+              <th>Telefon</th>
+              <th>Adresa</th>
+              <th>Uloga</th>
+              <th>Akcije</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let worker of workers">
+              <td>{{ worker.email }}</td>
+              <td>{{ worker.firstName }}</td>
+              <td>{{ worker.lastName }}</td>
+              <td>{{ worker.phoneNumber }}</td>
+              <td>{{ worker.address.street }} {{ worker.address.streetNumber }}, {{ worker.address.postalCode }} {{ worker.address.city }}, {{ worker.address.country }}</td>
+              <td>{{ roleTranslations[worker.role.name] }}</td>
+              <td>
+                <button class="btn btn-warning">Blokiraj</button>
+                <button class="btn btn-danger">Obriši</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  

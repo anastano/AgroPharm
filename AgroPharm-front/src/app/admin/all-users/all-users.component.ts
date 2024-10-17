@@ -10,7 +10,14 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class AllUsersComponent implements OnInit{
   users: UserWRole[] = [];
-  userRole: string = '';
+  clients: UserWRole[] = [];
+  workers: UserWRole[] = [];
+  roleTranslations: any = {
+    'ADMIN': 'Administrator',
+    'DELIVERER': 'Dostavljač',
+    'SELLER': 'Prodavac',
+    'CLIENT': 'Klijent'
+  };
 
   constructor(private authService: AuthService, private toastr: ToastrService) {}
 
@@ -21,9 +28,13 @@ export class AllUsersComponent implements OnInit{
   loadUsers() {
     this.authService.getAllUsers().subscribe((data: UserWRole[]) => {
       this.users = data;
+      this.splitUsersByRole();
     });
   }
 
- 
+  splitUsersByRole() {
+    this.clients = this.users.filter(user => user.role.name === 'CLIENT');
+    this.workers = this.users.filter(user => user.role.name !== 'CLIENT');
+  }
 
 }
